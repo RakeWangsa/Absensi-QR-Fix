@@ -7,6 +7,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Kelas;
 use App\Models\Absensi;
+use App\Models\waktuAbsen;
 
 class AbsensiController extends Controller
 {
@@ -29,6 +30,11 @@ class AbsensiController extends Controller
             foreach ($siswa as $data) {
                 $id_siswa = $data->id_siswa;
                 $nama = $data->nama;
+
+                waktuAbsen::insert([
+                    'id_kelas' => $id_kelas,
+                    'waktu' => $hariIni,
+                ]);
 
                 Absensi::insert([
                     'id_siswa' => $id_siswa,
