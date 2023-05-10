@@ -41,8 +41,17 @@ class DaftarKelasController extends Controller
             ->select('*')
             ->get();
         $waktuAbsen = DB::table('waktuAbsen')
+            ->where('id_kelas', $id)
             ->select('*')
             ->get();
+        // foreach ($waktuAbsen as $value) {
+        //     $siswa2 = DB::table('kelasSiswa')
+        //     ->where('kelas', 'like', '%' . $id . '%')
+        //     ->where('waktu','>',$waktuAbsen)
+        //     ->select('*')
+        //     ->get();
+        //     }
+
         // $siswa2 = DB::table('kelasSiswa')
         //     ->where('kelas', 'like', '%' . $id . '%')
         //     ->where('waktu','>',$waktuAbsen->)
@@ -54,6 +63,7 @@ class DaftarKelasController extends Controller
             'active' => 'daftar siswa',
             'siswa' => $siswa,
             'id' => $id,
+            'waktuAbsen' => $waktuAbsen,
         ]);
     }
 

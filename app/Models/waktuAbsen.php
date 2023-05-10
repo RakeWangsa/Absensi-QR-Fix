@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class waktuAbsen extends Model
 {
     use HasFactory;
-    protected $table = 'kelasSiswa';
+    protected $table = 'waktuAbsen';
     protected $fillable = ['id', 'id_kelas', 'waktu'];
 }

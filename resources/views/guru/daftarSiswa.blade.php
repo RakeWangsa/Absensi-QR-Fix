@@ -5,7 +5,7 @@
    <div class="container">
       <div class="row align-items-center">
          <div class="col">
-            <h1>Rekap Absen</h1>
+            <h1>Rekap Absen (ID Kelas : {{ $id }})</h1>
          </div>
       </div>
    </div>
@@ -40,7 +40,7 @@
 <div class="row">
       <div class="card col-md-12 mt-2 pb-4">
          <div class="card-body">
-             <h5 class="card-title">ID Kelas : {{ $id }}</h5>
+             <h5 class="card-title">Total</h5>
              <div class="table-container border">
              <table>
                 <thead>
@@ -80,10 +80,11 @@
       </div>
 </div>
 
+@foreach($waktuAbsen as $items)
 <div class="row">
    <div class="card col-md-12 mt-2 pb-4">
       <div class="card-body">
-          <h5 class="card-title">Tanggal : {{ $id }}</h5>
+         <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
           <div class="table-container border">
           <table>
              <thead>
@@ -96,17 +97,15 @@
              </thead>
              
              <tbody>
+               @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('id_kelas', $id)->get())
                @php($no=1)
-               @if(count($siswa) > 0)
-               @foreach($siswa as $item)
-               @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->get())
+               @if(count($absensi) > 0)
+               @foreach($absensi as $item)               
                 <tr>
                    <td scope="row" class="text-center">{{ $no++ }}</td>
                    <td class="text-center">{{ $item->id_siswa }}</td>
                    <td class="text-center">{{ $item->nama }}</td>
-                   <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
-                   <td class="text-center">{{ $absensi->where('status', 'Izin')->count() }}</td>
-                   <td class="text-center">{{ $absensi->where('status', 'Tidak Hadir')->count() }}</td>
+                   <td class="text-center">{{ $item->status }}</td>
                 </tr>
                 @endforeach
                 @else
@@ -120,4 +119,6 @@
       </div>
    </div>
 </div>
+@endforeach
+
 @endsection

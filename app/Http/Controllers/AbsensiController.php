@@ -31,11 +31,6 @@ class AbsensiController extends Controller
                 $id_siswa = $data->id_siswa;
                 $nama = $data->nama;
 
-                waktuAbsen::insert([
-                    'id_kelas' => $id_kelas,
-                    'waktu' => $hariIni,
-                ]);
-
                 Absensi::insert([
                     'id_siswa' => $id_siswa,
                     'nama' => $nama,
@@ -44,6 +39,10 @@ class AbsensiController extends Controller
                     'status' => 'Tidak Hadir'
                 ]);
             }
+            waktuAbsen::insert([
+                'id_kelas' => $id_kelas,
+                'waktu' => $hariIni,
+            ]);
         }
         Kelas::where('id', $id_kelas)
             ->update([
