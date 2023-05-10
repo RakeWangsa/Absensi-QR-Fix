@@ -40,6 +40,14 @@ class DaftarKelasController extends Controller
             ->where('kelas', 'like', '%' . $id . '%')
             ->select('*')
             ->get();
+        $waktuAbsen = DB::table('waktuAbsen')
+            ->select('*')
+            ->get();
+        // $siswa2 = DB::table('kelasSiswa')
+        //     ->where('kelas', 'like', '%' . $id . '%')
+        //     ->where('waktu','>',$waktuAbsen->)
+        //     ->select('*')
+        //     ->get();
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
