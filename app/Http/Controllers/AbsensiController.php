@@ -56,6 +56,7 @@ class AbsensiController extends Controller
 
     public function submitAbsen(Request $request, $id_kelas)
     {
+        $hariIni = Carbon::now()->addHours(7)->startOfDay();
         $idkelas = base64_decode($id_kelas);
         $skrg = Carbon::now()->addHours(7);
         $skrgmin15 = Carbon::now()->addHours(7)->subMinutes(15);
@@ -76,13 +77,20 @@ class AbsensiController extends Controller
         ->first();
 
         if($request->scan==$code_absen){
-            Absensi::insert([
-                'id_siswa' => $id_siswa,
-                'nama' => $name,
-                'id_kelas' => $idkelas,
+            Absensi::where('id_kelas', $idkelas)
+            ->where('id_siswa', $id_siswa)
+            ->where('waktu', '>',$hariIni)
+            ->update([
                 'waktu' => $skrg,
                 'status' => 'Hadir'
             ]);
+            // Absensi::insert([
+            //     'id_siswa' => $id_siswa,
+            //     'nama' => $name,
+            //     'id_kelas' => $idkelas,
+            //     'waktu' => $skrg,
+            //     'status' => 'Hadir'
+            // ]);
             return redirect('/home')->with('success', 'Berhasil melakukan absensi');
         }else{
             return redirect('/scan/'.$id_kelas)->with('success', 'Absensi gagal, silahkan coba lagi!');

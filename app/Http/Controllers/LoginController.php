@@ -8,6 +8,24 @@ use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
+    public function check()
+    {
+        $email=session('email');
+        if(isset($email)){
+            $role = DB::table('users')
+            ->where('email',$email)
+            ->pluck('role')
+            ->first();
+            if($role=="guru"){
+                return redirect('/home/guru');
+            }elseif($role=="siswa"){
+                return redirect('/home');
+            }elseif($role=="admin"){
+                return redirect('/managementUser');
+            }
+        }
+        return redirect('/login');
+    }
     public function index()
     {
         return view('login.index', [

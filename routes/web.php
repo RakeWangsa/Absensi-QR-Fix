@@ -20,9 +20,8 @@ use App\Http\Controllers\QrCodeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/check');
+Route::get('/check', [LoginController::class, 'check'])->name('check');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
