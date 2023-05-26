@@ -84,13 +84,6 @@ class AbsensiController extends Controller
                 'waktu' => $skrg,
                 'status' => 'Hadir'
             ]);
-            // Absensi::insert([
-            //     'id_siswa' => $id_siswa,
-            //     'nama' => $name,
-            //     'id_kelas' => $idkelas,
-            //     'waktu' => $skrg,
-            //     'status' => 'Hadir'
-            // ]);
             return redirect('/home')->with('success', 'Berhasil melakukan absensi');
         }else{
             return redirect('/scan/'.$id_kelas)->with('success', 'Absensi gagal, silahkan coba lagi!');

@@ -28,18 +28,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-// Route::get('/qrcode', function () {
-//     return view('qrcode');
-// });
-
-// Route::get('/qrcode-generate', function () {
-//     $qrCode = new \SimpleSoftwareIO\QrCode\Facades\QrCode();
-//     $qrCode->size(500);
-//     $qrCode->format('png');
-//     $qrCode->generate('https://example.com', public_path('images/qrcode.png'));
-
-//     return redirect('/qrcode');
-// });
 
 
 Route::group(['middleware' => ['auth', 'cekRole:siswa']], function() {

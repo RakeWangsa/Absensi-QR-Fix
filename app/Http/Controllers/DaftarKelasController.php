@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kelas;
+use App\Models\Absensi;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Carbon;
@@ -44,19 +45,6 @@ class DaftarKelasController extends Controller
             ->where('id_kelas', $id)
             ->select('*')
             ->get();
-        // foreach ($waktuAbsen as $value) {
-        //     $siswa2 = DB::table('kelasSiswa')
-        //     ->where('kelas', 'like', '%' . $id . '%')
-        //     ->where('waktu','>',$waktuAbsen)
-        //     ->select('*')
-        //     ->get();
-        //     }
-
-        // $siswa2 = DB::table('kelasSiswa')
-        //     ->where('kelas', 'like', '%' . $id . '%')
-        //     ->where('waktu','>',$waktuAbsen->)
-        //     ->select('*')
-        //     ->get();
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
@@ -159,6 +147,7 @@ class DaftarKelasController extends Controller
     {
         $id = base64_decode($id);
         Kelas::where('id', $id)->delete();
+        Absensi::where('id_kelas', $id)->delete();
 
         return redirect('/daftarKelas')->with('success');
     }

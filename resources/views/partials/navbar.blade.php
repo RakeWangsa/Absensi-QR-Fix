@@ -11,12 +11,6 @@
                <span>User ID : {{ auth()->user()->id }}</span>
             </li>
 
-            {{-- <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item d-flex align-items-center" href="/dashboard/operator"><i class="bi bi-grid"></i><span>Dashboard</span></a></li>
-               
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item d-flex align-items-center" href="/daftar/antrian"><i class="bi bi-list-ul"></i><span>Daftar Antrian</span></a></li> --}}
-
             <li><hr class="dropdown-divider"></li>
             <li>
                <form action="/logout" method="post" >
