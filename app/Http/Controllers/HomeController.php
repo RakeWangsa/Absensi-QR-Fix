@@ -230,10 +230,17 @@ class HomeController extends Controller
             ->where('waktu', '>', $hariIni)
             ->select('*')
             ->get();
+        $sakit = DB::table('absensi')
+            ->where('id_kelas',$id)
+            ->where('status','Sakit')
+            ->where('waktu', '>', $hariIni)
+            ->select('*')
+            ->get();
         $jumlahSiswa = count($siswa);
         $jumlahHadir = count($hadir);
         $jumlahIzin = count($izin);
-        $jumlahTidakHadir = $jumlahSiswa-$jumlahHadir-$jumlahIzin;
+        $jumlahSakit = count($sakit);
+        $jumlahAlfa= $jumlahSiswa-$jumlahHadir-$jumlahIzin-$jumlahSakit;
 
         return view('guru.absen', [
             'title' => 'Absensi',
@@ -245,8 +252,9 @@ class HomeController extends Controller
             'absensi' => $absensi,
             'jumlahSiswa' => $jumlahSiswa,
             'jumlahHadir' => $jumlahHadir,
+            'jumlahSakit' => $jumlahSakit,
             'jumlahIzin' => $jumlahIzin,
-            'jumlahTidakHadir' => $jumlahTidakHadir,
+            'jumlahAlfa' => $jumlahAlfa,
         ]);
     }
 

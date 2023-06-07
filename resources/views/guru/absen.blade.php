@@ -67,7 +67,7 @@
       <div class="card col-md-12 mt-2 pb-4">
          <div class="card-body">
              <h5 class="card-title">Daftar Hadir Siswa</h5>
-             <p>Hadir : {{ $jumlahHadir }}, Sakit : {{ $jumlahSakit }}, Izin : {{ $jumlahIzin }}, Alfa : {{ $jumlahTidakHadir }}</p>
+             <p>Hadir : {{ $jumlahHadir }}, Sakit : {{ $jumlahSakit }}, Izin : {{ $jumlahIzin }}, Alfa : {{ $jumlahAlfa }}</p>
              <div class="table-container border">
              <table>
                 <thead>
