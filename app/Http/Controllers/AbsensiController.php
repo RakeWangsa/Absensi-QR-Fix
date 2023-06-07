@@ -271,4 +271,71 @@ class AbsensiController extends Controller
         return redirect('/home/absensi/'.$id_kelas)->with('success');
     }
 
+    public function editHadir($id_kelas,$id_siswa,$waktu)
+    {
+        $id_siswa = base64_decode($id_siswa);
+        $idkelas = base64_decode($id_kelas);
+        $waktu = base64_decode($waktu);
+        $rowToUpdate = Absensi::where('id_siswa', $id_siswa)
+        ->where('id_kelas', $idkelas)
+        ->where('waktu', $waktu)
+        ->first();
+        if($rowToUpdate){
+            $rowToUpdate->update([
+                'status' => 'Hadir',
+            ]);
+        }    
+        return redirect('/daftarSiswa/'.$id_kelas)->with('success');
+    }
+
+    public function editSakit($id_kelas,$id_siswa,$waktu)
+    {
+        $id_siswa = base64_decode($id_siswa);
+        $idkelas = base64_decode($id_kelas);
+        $waktu = base64_decode($waktu);
+        $rowToUpdate = Absensi::where('id_siswa', $id_siswa)
+        ->where('id_kelas', $idkelas)
+        ->where('waktu', $waktu)
+        ->first();
+        if($rowToUpdate){
+            $rowToUpdate->update([
+                'status' => 'Sakit',
+            ]);
+        }    
+        return redirect('/daftarSiswa/'.$id_kelas)->with('success');
+    }
+
+    public function editIzin($id_kelas,$id_siswa,$waktu)
+    {
+        $id_siswa = base64_decode($id_siswa);
+        $idkelas = base64_decode($id_kelas);
+        $waktu = base64_decode($waktu);
+        $rowToUpdate = Absensi::where('id_siswa', $id_siswa)
+        ->where('id_kelas', $idkelas)
+        ->where('waktu', $waktu)
+        ->first();
+        if($rowToUpdate){
+            $rowToUpdate->update([
+                'status' => 'Izin',
+            ]);
+        }    
+        return redirect('/daftarSiswa/'.$id_kelas)->with('success');
+    }
+
+    public function editAlfa($id_kelas,$id_siswa,$waktu)
+    {
+        $id_siswa = base64_decode($id_siswa);
+        $idkelas = base64_decode($id_kelas);
+        $waktu = base64_decode($waktu);
+        $rowToUpdate = Absensi::where('id_siswa', $id_siswa)
+        ->where('id_kelas', $idkelas)
+        ->where('waktu', $waktu)
+        ->first();
+        if($rowToUpdate){
+            $rowToUpdate->update([
+                'status' => 'Alfa',
+            ]);
+        }    
+        return redirect('/daftarSiswa/'.$id_kelas)->with('success');
+    }
 }
