@@ -95,6 +95,7 @@
                  <th scope="col" class="text-center">ID Siswa</th>
                  <th scope="col" class="text-center">Nama</th>
                  <th scope="col" class="text-center">Status</th>
+                 <th scope="col" class="text-center">Edit</th>
                 </tr>
              </thead>
              
@@ -108,6 +109,12 @@
                    <td class="text-center">{{ $item->id_siswa }}</td>
                    <td class="text-center">{{ $item->nama }}</td>
                    <td class="text-center">{{ $item->status }}</td>
+                   <td class="text-center">
+                     <a class="btn btn-primary" style="border-radius: 100px;" a href="{{ route('editHadir', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id), 'waktu' => base64_encode($item->waktu)]) }}"><i class="bi bi-check-circle"></i></a>
+                     <a class="btn btn-warning" style="border-radius: 100px;" a href="{{ route('editSakit', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id), 'waktu' => base64_encode($item->waktu)]) }}"><i class="bi bi-thermometer-half"></i></a>
+                     <a class="btn btn-info" style="border-radius: 100px;" a href="{{ route('editIzin', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id), 'waktu' => base64_encode($item->waktu)]) }}"><i class="bi bi-exclamation-circle"></i></a>
+                     <a class="btn btn-danger" style="border-radius: 100px;" a href="{{ route('editAlfa', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id), 'waktu' => base64_encode($item->waktu)]) }}"><i class="bi bi-x-circle"></i></a>
+                   </td>
                 </tr>
                 @endforeach
                 @else
