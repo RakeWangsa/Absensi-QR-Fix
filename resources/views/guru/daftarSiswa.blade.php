@@ -49,8 +49,9 @@
                     <th scope="col" class="text-center">ID Siswa</th>
                     <th scope="col" class="text-center">Nama</th>
                     <th scope="col" class="text-center">Jumlah Hadir</th>
+                    <th scope="col" class="text-center">Jumlah Sakit</th>
                     <th scope="col" class="text-center">Jumlah Izin</th>
-                    <th scope="col" class="text-center">Jumlah Tidak Hadir</th>
+                    <th scope="col" class="text-center">Jumlah Alfa</th>
                    </tr>
                 </thead>
                 
@@ -64,8 +65,9 @@
                       <td class="text-center">{{ $item->id_siswa }}</td>
                       <td class="text-center">{{ $item->nama }}</td>
                       <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
+                      <td class="text-center">{{ $absensi->where('status', 'Sakit')->count() }}</td>
                       <td class="text-center">{{ $absensi->where('status', 'Izin')->count() }}</td>
-                      <td class="text-center">{{ $absensi->where('status', 'Tidak Hadir')->count() }}</td>
+                      <td class="text-center">{{ $absensi->where('status', 'Alfa')->count() }}</td>
                    </tr>
                    @endforeach
                    @else

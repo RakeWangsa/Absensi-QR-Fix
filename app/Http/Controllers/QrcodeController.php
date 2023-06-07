@@ -24,7 +24,7 @@ class QrcodeController extends Controller
         ->pluck('status')
         ->first();
 
-        if($cekAbsen=='Hadir' || $cekAbsen=='Izin'){
+        if($cekAbsen=='Hadir' || $cekAbsen=='Izin' || $cekAbsen=='Sakit'){
             return redirect('/home')->with('success', 'Anda sudah absen!');
         }
 

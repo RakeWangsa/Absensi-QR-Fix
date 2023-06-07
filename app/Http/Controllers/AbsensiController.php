@@ -36,7 +36,7 @@ class AbsensiController extends Controller
                     'nama' => $nama,
                     'id_kelas' => $id_kelas,
                     'waktu' => $skrg,
-                    'status' => 'Tidak Hadir'
+                    'status' => 'Alfa'
                 ]);
             }
             waktuAbsen::insert([
@@ -153,6 +153,46 @@ class AbsensiController extends Controller
 
         return redirect('/home/absensi/'.$id_kelas)->with('success');
     }
+
+    public function setSakit($id_kelas,$id_siswa)
+    {
+        $id_siswa = base64_decode($id_siswa);
+        $idkelas = base64_decode($id_kelas);
+        $skrg = Carbon::now()->addHours(7);
+        $hariIni = Carbon::now()->addHours(7)->startOfDay();
+        $name = DB::table('users')
+        ->where('id',$id_siswa)
+        ->pluck('name')
+        ->first();
+        $cek = DB::table('absensi')
+        ->where('id_siswa',$id_siswa)
+        ->where('waktu', '>', $hariIni)
+        ->pluck('status')
+        ->first();
+
+        if(isset($cek)){
+            $rowToUpdate = Absensi::where('id_siswa', $id_siswa)
+                ->where('id_kelas', $idkelas)
+                ->orderBy('id', 'desc')
+                ->first();
+                if($rowToUpdate){
+                    $rowToUpdate->update([
+                        'status' => 'Sakit',
+                        'waktu' => $skrg,
+                    ]);
+                }
+        }else{
+            Absensi::insert([
+                'id_siswa' => $id_siswa,
+                'nama' => $name,
+                'id_kelas' => $idkelas,
+                'status' => 'Sakit',
+                'waktu' => $skrg,
+            ]);
+        }
+        return redirect('/home/absensi/'.$id_kelas)->with('success');
+    }
+
     public function setIzin($id_kelas,$id_siswa)
     {
         $id_siswa = base64_decode($id_siswa);
@@ -215,7 +255,7 @@ class AbsensiController extends Controller
                 ->first();
                 if($rowToUpdate){
                     $rowToUpdate->update([
-                        'status' => 'Tidak Hadir',
+                        'status' => 'Alfa',
                         'waktu' => $skrg,
                     ]);
                 }
@@ -224,7 +264,7 @@ class AbsensiController extends Controller
                 'id_siswa' => $id_siswa,
                 'nama' => $name,
                 'id_kelas' => $idkelas,
-                'status' => 'Tidak Hadir',
+                'status' => 'Alfa',
                 'waktu' => $skrg,
             ]);
         }

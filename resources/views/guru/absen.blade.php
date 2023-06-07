@@ -67,7 +67,7 @@
       <div class="card col-md-12 mt-2 pb-4">
          <div class="card-body">
              <h5 class="card-title">Daftar Hadir Siswa</h5>
-             <p>Hadir : {{ $jumlahHadir }}, Izin : {{ $jumlahIzin }}, Tidak Hadir : {{ $jumlahTidakHadir }}</p>
+             <p>Hadir : {{ $jumlahHadir }}, Sakit : {{ $jumlahSakit }}, Izin : {{ $jumlahIzin }}, Alfa : {{ $jumlahTidakHadir }}</p>
              <div class="table-container border">
              <table>
                 <thead>
@@ -92,7 +92,8 @@
                       <td class="text-center">{{ $item->status }}</td>
                       <td class="text-center">
                         <a class="btn btn-primary" style="border-radius: 100px;" a href="{{ route('setHadir', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-check-circle"></i></a>
-                        <a class="btn btn-warning" style="border-radius: 100px;" a href="{{ route('setIzin', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-exclamation-circle"></i></a>
+                        <a class="btn btn-warning" style="border-radius: 100px;" a href="{{ route('setSakit', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-thermometer-half"></i></a>
+                        <a class="btn btn-info" style="border-radius: 100px;" a href="{{ route('setIzin', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-exclamation-circle"></i></a>
                         <a class="btn btn-danger" style="border-radius: 100px;" a href="{{ route('setTidakHadir', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-x-circle"></i></a>
                      </td>
                    </tr>
