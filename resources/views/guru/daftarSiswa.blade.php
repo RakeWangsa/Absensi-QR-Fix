@@ -152,6 +152,9 @@
          <th class="text-center">Pengajar : {{ $info->guru }}</th>
       </tr>
       <tr>
+         <th class="text-center">Tahun Ajaran : {{ $tahunAjaran }}</th>
+      </tr>
+      <tr>
       </tr>
          <tr>
          <th scope="col" class="text-center">No</th>
