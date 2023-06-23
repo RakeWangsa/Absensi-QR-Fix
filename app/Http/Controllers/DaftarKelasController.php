@@ -45,6 +45,10 @@ class DaftarKelasController extends Controller
             ->where('id_kelas', $id)
             ->select('*')
             ->get();
+        $info = DB::table('kelas')
+            ->where('id', $id)
+            ->select('*')
+            ->first();
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
@@ -52,6 +56,7 @@ class DaftarKelasController extends Controller
             'siswa' => $siswa,
             'id' => $id,
             'waktuAbsen' => $waktuAbsen,
+            'info' => $info
         ]);
     }
 
