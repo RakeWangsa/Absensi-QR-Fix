@@ -28,6 +28,7 @@
                     <form class="row g-3 mt-3" method="GET" action="{{route('updateUser', ['id' => base64_encode($id)])}}">
                         <div class="col-md-12"> <label for="nama" class="form-label">Nama : </label> <input type="text" class="form-control" id="nama" name="nama" value="{{ $user[0]->name }}"></div>
                         <div class="col-md-12"> <label for="email" class="form-label">Email : </label> <input type="text" class="form-control" id="email" name="email" value="{{ $user[0]->email }}"></div>
+                        <div class="col-md-12"> <label for="nomor" class="form-label">@if ($role=='siswa')NIS : @else NIP : @endif</label> <input type="text" class="form-control" id="nomor" name="nomor" value="{{ $user[0]->nomor }}"></div>
                         <div class="col-md-12"> <label for="password" class="form-label">Password : </label> <input type="password" class="form-control" id="password" name="password" placeholder="Isi password baru"></div>
                         <div class="text-left mb-5 mt-4"> <a class="btn btn-danger" href="/managementUser">Batal</a><button type="submit" class="btn btn-primary ms-2">Submit</button></div>
                     </form>

@@ -42,6 +42,7 @@ class ManagementController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
+            'nomor' => 'required|unique:users',
             'password' => 'required|min:5|max:255'
         ]);
         $validatedData['role'] = 'guru';
@@ -60,13 +61,18 @@ class ManagementController extends Controller
         $id = base64_decode($id);
         $user = DB::table('Users')
         ->where('id',$id)
-        ->select('id', 'name', 'email')
+        ->select('id', 'name', 'email', 'nomor')
         ->get();
+        $role = DB::table('Users')
+        ->where('id',$id)
+        ->pluck('role')
+        ->first();
         return view('managementUser.editUser', [
             "title" => "Edit User",
             'active' => 'edit user',
             'user' => $user,
-            'id' => $id
+            'id' => $id,
+            'role' => $role
         ]);
     }
 
@@ -76,6 +82,7 @@ class ManagementController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|email:dns|unique:users,email,'.$id,
+            'nomor' => 'required|unique:users',
             'password' => 'nullable|min:5|max:255'
         ]);
 
@@ -83,6 +90,7 @@ class ManagementController extends Controller
 
         $user->name = $validatedData['nama'];
         $user->email = $validatedData['email'];
+        $user->nomor = $validatedData['nomor'];
 
         if (!empty($validatedData['password'])) {
             $user->password = Hash::make($validatedData['password']);
