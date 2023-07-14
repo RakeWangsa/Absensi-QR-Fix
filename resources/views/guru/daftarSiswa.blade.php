@@ -8,7 +8,7 @@
             <h1 style="text-align: left;">Rekap Absen (ID Kelas : {{ $id }})</h1>
          </div>
          <div class="col text-right">
-            <button id="excel" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download Excel</button>
+            <button id="excel" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download Rekap</button>
          </div>
       </div>
    </div>
@@ -91,11 +91,23 @@
       </div>
 </div>
 
+@php($nomer=1)
 @foreach($waktuAbsen as $items)
 <div class="row">
    <div class="card col-md-12 mt-2 pb-4">
       <div class="card-body">
+         <div class="row align-items-center">
+            <div class="col">
+               <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
+            </div>
+            <div class="col text-right">
+               <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button>
+            </div>
+         </div>
+         {{-- <div class="row">
          <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
+         <button id="excels" class="btn btn-primary"><span class="bi bi-download"></span> Download Excel</button>
+         </div> --}}
           <div class="table-container border">
           <table>
              <thead>
@@ -141,8 +153,8 @@
 @endforeach
 
 
-{{-- table buat di print --}}
-<div style="visibility: hidden;">
+{{-- table buat di print (rekap) --}}
+<div style="visibility: collapse;">
    <table id="rekap">
       <thead>
       <tr>
@@ -188,6 +200,52 @@
       </tbody>
    </table>
 </div>
+
+{{-- table buat di print (per minggu) --}}
+@php($nomer=1)
+@foreach($waktuAbsen as $items)
+<div>
+   <table id="rekap">
+      <thead>
+      <tr>
+         <th class="text-center">Kelas : {{ $info->pelajaran }}</th>
+      </tr>
+      <tr>
+         <th class="text-center">Pengajar : {{ $info->guru }}</th>
+      </tr>
+      <tr>
+         <th class="text-center">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</th>
+      </tr>
+      <tr>
+      </tr>
+         <tr>
+         <th scope="col" class="text-center">No</th>
+         <th scope="col" class="text-center">Nama</th>
+         <th scope="col" class="text-center">Status</th>
+         </tr>
+      </thead>
+      
+      <tbody>
+      @php($no=1)
+      @if(count($siswa) > 0)
+      @foreach($siswa as $item)
+      @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->get())
+         <tr>
+            <td scope="row" class="text-center">{{ $no++ }}</td>
+            <td class="text-center">{{ $item->nama }}</td>
+            <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
+         </tr>
+         @endforeach
+         @else
+         <tr>
+         <td colspan="6" class="text-center">Tidak ada siswa</td>
+         </tr>
+         @endif
+      </tbody>
+   </table>
+</div>
+@endforeach
+
 <script>
    document.getElementById('excel').addEventListener('click',function(){
       var table2excel = new Table2Excel();
