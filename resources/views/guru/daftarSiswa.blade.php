@@ -208,33 +208,38 @@
    <table id="rekap1">
       <thead>
       <tr>
+         <th class="text-center">{{ date('Y-m-d', strtotime($items->waktu)) }}</th>
+      </tr>
+      <tr>
          <th class="text-center">Kelas : {{ $info->pelajaran }}</th>
       </tr>
       <tr>
          <th class="text-center">Pengajar : {{ $info->guru }}</th>
       </tr>
       <tr>
-         <th class="text-center">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</th>
       </tr>
       <tr>
-      </tr>
-         <tr>
          <th scope="col" class="text-center">No</th>
          <th scope="col" class="text-center">Nama</th>
          <th scope="col" class="text-center">Status</th>
-         </tr>
+      </tr>
       </thead>
       
       <tbody>
       @php($no=1)
       @if(count($siswa) > 0)
       @foreach($siswa as $item)
-      @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->get())
-         <tr>
-            <td scope="row" class="text-center">{{ $no++ }}</td>
-            <td class="text-center">{{ $item->nama }}</td>
-            <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
-         </tr>
+         @php($waktu = new DateTime($items->waktu))
+         @php(
+            $absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->whereDate('waktu', $waktu->format('Y-m-d'))->get()
+         )
+         @if(count($absensi)>0)
+            <tr>
+               <td scope="row" class="text-center">{{ $no++ }}</td>
+               <td class="text-center">{{ $item->nama }}</td>
+               <td class="text-center">{{ $absensi[0]->status }}</td>
+            </tr>
+         @endif
          @endforeach
          @else
          <tr>
