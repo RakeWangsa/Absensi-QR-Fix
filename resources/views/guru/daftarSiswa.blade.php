@@ -154,7 +154,7 @@
 
 
 {{-- table buat di print (rekap) --}}
-<div style="visibility: collapse;">
+<div>
    <table id="rekap">
       <thead>
       <tr>
@@ -205,7 +205,7 @@
 @php($nomer=1)
 @foreach($waktuAbsen as $items)
 <div>
-   <table id="rekap">
+   <table id="rekap1">
       <thead>
       <tr>
          <th class="text-center">Kelas : {{ $info->pelajaran }}</th>
@@ -252,4 +252,21 @@
       table2excel.export(document.querySelectorAll("#rekap","Rekap Absen"));
    });
 </script>
+{{-- <script>
+   document.getElementById('excel1').addEventListener('click',function(){
+      var table2excel = new Table2Excel();
+      table2excel.export(document.querySelectorAll("#rekap1","Rekap Absen"));
+   });
+</script> --}}
+<script>
+   for (let i = 1; i <= 3; i++) {
+     const excelButton = document.getElementById(`excel${i}`);
+     const rekapDiv = document.getElementById(`rekap${i}`);
+ 
+     excelButton.addEventListener('click', function() {
+       var table2excel = new Table2Excel();
+       table2excel.export(document.querySelectorAll(`#${rekapDiv.id}`), `Rekap Absen ${i}`);
+     });
+   }
+ </script>
 @endsection
