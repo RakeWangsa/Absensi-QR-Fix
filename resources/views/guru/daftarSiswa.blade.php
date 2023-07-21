@@ -38,6 +38,17 @@
             <h1>Filter Bulan : {{ $filter }}</h1>
          </div>
       @endif
+      <form class="mt-4" method="GET" action="{{route('daftarSiswaSearch', ['id' => base64_encode($id)]) }}">
+            <div class="row justify-content-end">
+              <div class="col-md-4">
+                <div class="input-group">
+                  <label class="col-form-label" style="padding-right: 10px;">Search :</label>
+                  <input name="nama" type="text" class="form-control" @if(isset($search)) value="{{ $search }}" @endif>
+                  <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+                </div>
+              </div>
+            </div>
+       </form>
    </div>
 </div>
 
@@ -151,7 +162,11 @@
              </thead>
              
              <tbody>
-               @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('id_kelas', $id)->get())
+               @if(isset($search))
+                  @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('nama', $search)->where('id_kelas', $id)->get())
+               @else
+                  @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('id_kelas', $id)->get())
+               @endif
                @php($no=1)
                @if(count($absensi) > 0)
                @foreach($absensi as $item)               

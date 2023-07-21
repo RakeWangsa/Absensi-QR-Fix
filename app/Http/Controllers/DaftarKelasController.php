@@ -112,6 +112,47 @@ class DaftarKelasController extends Controller
         ]);
     }
 
+    public function daftarSiswaSearch(Request $request, $id)
+    {
+        $id = base64_decode($id);
+        $search = $request->nama;
+        $siswa = DB::table('kelasSiswa')
+            ->where('kelas', 'like', '%' . $id . '%')
+            ->where('nama', $request->nama)
+            ->select('*')
+            ->get();
+        $waktuAbsen = DB::table('waktuAbsen')
+            ->where('id_kelas', $id)
+            ->select('*')
+            ->get();
+        $info = DB::table('kelas')
+            ->where('id', $id)
+            ->select('*')
+            ->first();
+
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
+
+        return view('guru.daftarSiswa', [
+            'title' => 'Daftar Siswa',
+            'active' => 'daftar siswa',
+            'siswa' => $siswa,
+            'id' => $id,
+            'waktuAbsen' => $waktuAbsen,
+            'info' => $info,
+            'tahunAjaran' => $tahunAjaran,
+            'search' => $search,
+        ]);
+    }
+
     public function tambahKelas()
     {
         $email=session('email');
