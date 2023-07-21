@@ -303,9 +303,14 @@
 @endforeach
 
 <script>
+   const pelajaran = "<?php echo $info->pelajaran; ?>";
+   const kelas = "<?php echo $info->ruang; ?>";
+   const tahunAjaran = "<?php echo $tahunAjaran; ?>";
+   const tahunAjaranFormatted = tahunAjaran.replace("/", "-");
+
    document.getElementById('excel').addEventListener('click',function(){
       var table2excel = new Table2Excel();
-      table2excel.export(document.querySelectorAll("#rekap"), 'Rekap Absen');
+      table2excel.export(document.querySelectorAll("#rekap"), `Rekap Absen ${pelajaran} ${kelas} (${tahunAjaranFormatted})`);
    });
 </script>
 <script>
@@ -314,7 +319,7 @@
  
      excelButton.addEventListener('click', function() {
        var table2excel = new Table2Excel();
-       table2excel.export(document.querySelectorAll(`#harian`), `Absen Harian`);
+       table2excel.export(document.querySelectorAll(`#harian`), `Absen Harian ${pelajaran} ${kelas}`);
      });
  </script>
 @endsection
