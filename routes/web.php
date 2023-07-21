@@ -47,6 +47,7 @@ Route::group(['middleware' => ['auth', 'cekRole:guru']], function() {
     route::get('/generateQR/{id}', [AbsensiController::class, 'generateQR'])->name('generateQR')->middleware('auth');
     route::get('/daftarKelas', [DaftarKelasController::class, 'index'])->name('daftarKelas')->middleware('auth');
     route::get('/daftarSiswa/{id}', [DaftarKelasController::class, 'daftarSiswa'])->name('daftarSiswa')->middleware('auth');
+    route::get('/daftarSiswa/{id}/{filter}', [DaftarKelasController::class, 'daftarSiswaFilter'])->name('daftarSiswaFilter')->middleware('auth');
     route::get('/tambahKelas', [DaftarKelasController::class, 'tambahKelas'])->name('tambahKelas')->middleware('auth');
     route::get('/tambahKelas/submit', [DaftarKelasController::class, 'tambahKelasSubmit'])->name('tambahKelasSubmit')->middleware('auth');
     Route::get('/editKelas/{id}', [DaftarKelasController::class, 'editKelas'])->name('editKelas')->middleware('auth');

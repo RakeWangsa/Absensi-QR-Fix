@@ -8,12 +8,36 @@
             <h1 style="text-align: left;">Rekap Absen (ID Kelas : {{ $id }})</h1>
          </div>
          <div class="col text-right" style="text-align: right;">
-            {{-- <button id="excel1" class="btn btn-primary">Filter</button> --}}
-            <button id="excel" class="btn btn-primary"><span class="bi bi-download"></span> Download Rekap</button>
-            <button id="excel1" class="btn btn-primary"><span class="bi bi-download"></span> Download Mingguan</button>
-           
+            {{-- <button class="btn btn-primary"><i class="bi bi-search"></i> Filter</button> --}}
+            <div class="dropdown d-inline-block">
+               <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-search"></i> Filter
+               </button>
+               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('daftarSiswa', ['id' => base64_encode($id)]) }}">Tidak ada</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '1']) }}">Januari</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '2']) }}">Februari</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '3']) }}">Maret</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '4']) }}">April</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '5']) }}">Mei</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '6']) }}">Juni</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '7']) }}">Juli</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '8']) }}">Agustus</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '9']) }}">September</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '10']) }}">Oktober</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '11']) }}">November</a></li>
+                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '12']) }}">Desember</a></li>
+               </ul>
+             </div>
+            <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button>
+            <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Mingguan</button>
          </div>
       </div>
+      @if(isset($filter))
+         <div class="col">
+            <h1>Filter Bulan : {{ $filter }}</h1>
+         </div>
+      @endif
    </div>
 </div>
 
@@ -48,6 +72,7 @@
       
    </script>
 
+@if(!isset($filter))
 <div class="row">
       <div class="card col-md-12 mt-2 pb-4">
          <div class="card-body">
@@ -93,6 +118,7 @@
          </div>
       </div>
 </div>
+@endif
 
 {{-- @php($nomer=1) --}}
 @foreach($waktuAbsen as $items)
@@ -157,7 +183,7 @@
 
 
 {{-- table buat di print (rekap) --}}
-<div>
+<div style="visibility: collapse">
    <table id="rekap">
       <thead>
       <tr>
@@ -205,9 +231,8 @@
 </div>
 
 {{-- table buat di print (per minggu) --}}
-@php($nomer=1)
 @foreach($waktuAbsen as $items)
-<div>
+<div style="visibility: collapse">
    <table id="mingguan">
       <thead>
       <tr>
@@ -267,7 +292,7 @@
    });
 </script> --}}
 <script>
-   const excelButton = document.getElementById(`excel1`);
+   const excelButton = document.getElementById(`excel2`);
    const rekapDiv = document.getElementById(`mingguan`);
  
      excelButton.addEventListener('click', function() {
