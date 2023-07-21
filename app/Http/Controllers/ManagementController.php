@@ -14,11 +14,11 @@ class ManagementController extends Controller
     {
         $guru = DB::table('Users')
         ->where('role','guru')
-        ->select('id', 'name', 'email')
+        ->select('id', 'name', 'email','nomor')
         ->get();
         $siswa = DB::table('Users')
         ->where('role','siswa')
-        ->select('id', 'name', 'email')
+        ->select('id', 'name', 'email','nomor')
         ->get();
 
         return view('managementUser.manage', [

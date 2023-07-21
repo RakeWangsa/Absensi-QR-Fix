@@ -73,8 +73,8 @@
                 <thead>
                    <tr>
                     <th scope="col" class="text-center">No</th>
-                    <th scope="col" class="text-center">ID Siswa</th>
                     <th scope="col" class="text-center">Nama</th>
+                    <th scope="col" class="text-center">NIS</th>
                     <th scope="col" class="text-center">Status</th>
                     <th scope="col" class="text-center">Action</th>
                    </tr>
@@ -85,10 +85,11 @@
                   @if(count($absensi) > 0)
                   @foreach($absensi as $item)
                   {{-- @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->first()) --}}
+                  @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
                    <tr>
                       <td scope="row" class="text-center">{{ $no++ }}</td>
-                      <td class="text-center">{{ $item->id_siswa }}</td>
                       <td class="text-center">{{ $item->nama }}</td>
+                      <td class="text-center">{{ $user[0]->nomor }}</td>
                       <td class="text-center">{{ $item->status }}</td>
                       <td class="text-center">
                         <a class="btn btn-primary" style="border-radius: 100px;" a href="{{ route('setHadir', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id)]) }}"><i class="bi bi-check-circle"></i></a>
