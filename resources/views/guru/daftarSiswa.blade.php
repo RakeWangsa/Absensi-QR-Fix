@@ -30,7 +30,7 @@
                </ul>
              </div>
             <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button>
-            <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Mingguan</button>
+            <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Harian</button>
          </div>
       </div>
       @if(isset($filter))
@@ -83,8 +83,8 @@
                 <thead>
                    <tr>
                     <th scope="col" class="text-center">No</th>
-                    <th scope="col" class="text-center">ID Siswa</th>
                     <th scope="col" class="text-center">Nama</th>
+                    <th scope="col" class="text-center">NIS</th>
                     <th scope="col" class="text-center">Jumlah Hadir</th>
                     <th scope="col" class="text-center">Jumlah Sakit</th>
                     <th scope="col" class="text-center">Jumlah Izin</th>
@@ -97,10 +97,11 @@
                   @if(count($siswa) > 0)
                   @foreach($siswa as $item)
                   @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->get())
+                  @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
                    <tr>
                       <td scope="row" class="text-center">{{ $no++ }}</td>
-                      <td class="text-center">{{ $item->id_siswa }}</td>
                       <td class="text-center">{{ $item->nama }}</td>
+                      <td class="text-center">{{ $user[0]->nomor }}</td>
                       <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
                       <td class="text-center">{{ $absensi->where('status', 'Sakit')->count() }}</td>
                       <td class="text-center">{{ $absensi->where('status', 'Izin')->count() }}</td>
@@ -142,8 +143,8 @@
              <thead>
                 <tr>
                  <th scope="col" class="text-center">No</th>
-                 <th scope="col" class="text-center">ID Siswa</th>
                  <th scope="col" class="text-center">Nama</th>
+                 <th scope="col" class="text-center">NIS</th>
                  <th scope="col" class="text-center">Status</th>
                  <th scope="col" class="text-center">Edit</th>
                 </tr>
@@ -154,10 +155,11 @@
                @php($no=1)
                @if(count($absensi) > 0)
                @foreach($absensi as $item)               
+               @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
                 <tr>
                    <td scope="row" class="text-center">{{ $no++ }}</td>
-                   <td class="text-center">{{ $item->id_siswa }}</td>
                    <td class="text-center">{{ $item->nama }}</td>
+                   <td class="text-center">{{ $user[0]->nomor }}</td>
                    <td class="text-center">{{ $item->status }}</td>
                    <td class="text-center">
                      <a class="btn btn-primary" style="border-radius: 100px;" a href="{{ route('editHadir', ['id_siswa' => base64_encode($item->id_siswa), 'id_kelas' => base64_encode($id), 'waktu' => base64_encode($item->waktu)]) }}"><i class="bi bi-check-circle"></i></a>
@@ -200,6 +202,7 @@
          <tr>
          <th scope="col" class="text-center">No</th>
          <th scope="col" class="text-center">Nama</th>
+         <th scope="col" class="text-center">NIS</th>
          <th scope="col" class="text-center">Jumlah Hadir</th>
          <th scope="col" class="text-center">Jumlah Sakit</th>
          <th scope="col" class="text-center">Jumlah Izin</th>
@@ -212,9 +215,11 @@
       @if(count($siswa) > 0)
       @foreach($siswa as $item)
       @php($absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->get())
+      @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
          <tr>
             <td scope="row" class="text-center">{{ $no++ }}</td>
             <td class="text-center">{{ $item->nama }}</td>
+            <td class="text-center">{{ $user[0]->nomor }}</td>
             <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
             <td class="text-center">{{ $absensi->where('status', 'Sakit')->count() }}</td>
             <td class="text-center">{{ $absensi->where('status', 'Izin')->count() }}</td>
@@ -230,10 +235,10 @@
    </table>
 </div>
 
-{{-- table buat di print (per minggu) --}}
+{{-- table buat di print (harian) --}}
 @foreach($waktuAbsen as $items)
 <div style="visibility: collapse">
-   <table id="mingguan">
+   <table id="harian">
       <thead>
       <tr>
          <th class="text-center">{{ date('Y-m-d', strtotime($items->waktu)) }}</th>
@@ -249,6 +254,7 @@
       <tr>
          <th scope="col" class="text-center">No</th>
          <th scope="col" class="text-center">Nama</th>
+         <th scope="col" class="text-center">NIS</th>
          <th scope="col" class="text-center">Status</th>
       </tr>
       </thead>
@@ -261,10 +267,12 @@
          @php(
             $absensi = \App\Models\Absensi::where('id_siswa', $item->id_siswa)->where('id_kelas', $id)->whereDate('waktu', $waktu->format('Y-m-d'))->get()
          )
+         @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
          @if(count($absensi)>0)
             <tr>
                <td scope="row" class="text-center">{{ $no++ }}</td>
                <td class="text-center">{{ $item->nama }}</td>
+               <td class="text-center">{{ $user[0]->nomor }}</td>
                <td class="text-center">{{ $absensi[0]->status }}</td>
             </tr>
          @endif
@@ -282,22 +290,16 @@
 <script>
    document.getElementById('excel').addEventListener('click',function(){
       var table2excel = new Table2Excel();
-      table2excel.export(document.querySelectorAll("#rekap"), 'Rekab Absen');
+      table2excel.export(document.querySelectorAll("#rekap"), 'Rekap Absen');
    });
 </script>
-{{-- <script>
-   document.getElementById('excel1').addEventListener('click',function(){
-      var table2excel = new Table2Excel();
-      table2excel.export(document.querySelectorAll("#rekap1","Rekap Absen"));
-   });
-</script> --}}
 <script>
    const excelButton = document.getElementById(`excel2`);
-   const rekapDiv = document.getElementById(`mingguan`);
+   const rekapDiv = document.getElementById(`harian`);
  
      excelButton.addEventListener('click', function() {
        var table2excel = new Table2Excel();
-       table2excel.export(document.querySelectorAll(`#mingguan`), `Rekap Mingguan`);
+       table2excel.export(document.querySelectorAll(`#harian`), `Absen Harian`);
      });
  </script>
 @endsection
