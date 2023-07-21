@@ -7,8 +7,11 @@
          <div class="col">
             <h1 style="text-align: left;">Rekap Absen (ID Kelas : {{ $id }})</h1>
          </div>
-         <div class="col text-right">
-            <button id="excel" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download Rekap</button>
+         <div class="col text-right" style="text-align: right;">
+            {{-- <button id="excel1" class="btn btn-primary">Filter</button> --}}
+            <button id="excel" class="btn btn-primary"><span class="bi bi-download"></span> Download Rekap</button>
+            <button id="excel1" class="btn btn-primary"><span class="bi bi-download"></span> Download Mingguan</button>
+           
          </div>
       </div>
    </div>
@@ -91,7 +94,7 @@
       </div>
 </div>
 
-@php($nomer=1)
+{{-- @php($nomer=1) --}}
 @foreach($waktuAbsen as $items)
 <div class="row">
    <div class="card col-md-12 mt-2 pb-4">
@@ -101,7 +104,7 @@
                <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
             </div>
             <div class="col text-right">
-               <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button>
+               {{-- <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button> --}}
             </div>
          </div>
          {{-- <div class="row">
@@ -205,7 +208,7 @@
 @php($nomer=1)
 @foreach($waktuAbsen as $items)
 <div>
-   <table id="rekap1">
+   <table id="mingguan">
       <thead>
       <tr>
          <th class="text-center">{{ date('Y-m-d', strtotime($items->waktu)) }}</th>
@@ -254,7 +257,7 @@
 <script>
    document.getElementById('excel').addEventListener('click',function(){
       var table2excel = new Table2Excel();
-      table2excel.export(document.querySelectorAll("#rekap","Rekap Absen"));
+      table2excel.export(document.querySelectorAll("#rekap"), 'Rekab Absen');
    });
 </script>
 {{-- <script>
@@ -264,14 +267,12 @@
    });
 </script> --}}
 <script>
-   for (let i = 1; i <= 3; i++) {
-     const excelButton = document.getElementById(`excel${i}`);
-     const rekapDiv = document.getElementById(`rekap${i}`);
+   const excelButton = document.getElementById(`excel1`);
+   const rekapDiv = document.getElementById(`mingguan`);
  
      excelButton.addEventListener('click', function() {
        var table2excel = new Table2Excel();
-       table2excel.export(document.querySelectorAll(`#${rekapDiv.id}`), `Rekap Absen ${i}`);
+       table2excel.export(document.querySelectorAll(`#mingguan`), `Rekap Mingguan`);
      });
-   }
  </script>
 @endsection
