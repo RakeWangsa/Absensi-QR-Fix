@@ -82,7 +82,7 @@ class ManagementController extends Controller
         $validatedData = $request->validate([
             'nama' => 'required|max:255',
             'email' => 'required|email:dns|unique:users,email,'.$id,
-            'nomor' => 'required|unique:users',
+            'nomor' => 'required|unique:users,nomor,'.$id,
             'password' => 'nullable|min:5|max:255'
         ]);
 

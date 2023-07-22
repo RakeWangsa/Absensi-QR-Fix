@@ -50,8 +50,8 @@
                 <thead>
                    <tr>
                     <th scope="col">No</th>
-                    <th scope="col">Nama</th>
                     <th scope="col">NIP</th>
+                    <th scope="col">Nama</th>
                     <th scope="col">Email</th>
                     <th scope="col">Action</th>
                    </tr>
@@ -63,8 +63,8 @@
                   @foreach($guru as $item)
                    <tr>
                       <td scope="row">{{ $no++ }}</td>
-                      <td>{{ $item->name }}</td>
                       <td>{{ $item->nomor }}</td>
+                      <td>{{ $item->name }}</td>
                       <td>{{ $item->email }}</td>
                       <td>
                         <a class="btn btn-warning" style="border-radius: 100px;" a href="{{ route('editUser', ['id' => base64_encode($item->id)]) }}"><i class="bi bi-pencil-square text-white"></i></a>
@@ -91,8 +91,8 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
-                     <th scope="col">Nama</th>
                      <th scope="col">NIS</th>
+                     <th scope="col">Nama</th>
                      <th scope="col">Email</th>
                      <th scope="col">Action</th>
                      
@@ -105,8 +105,8 @@
                  @foreach($siswa as $item)
                   <tr>
                      <td scope="row">{{ $no++ }}</td>
-                     <td>{{ $item->name }}</td>
                      <td>{{ $item->nomor }}</td>
+                     <td>{{ $item->name }}</td>
                      <td>{{ $item->email }}</td>
                      <td>
                         <a class="btn btn-warning" style="border-radius: 100px;" a href="{{ route('editUser', ['id' => base64_encode($item->id)]) }}"><i class="bi bi-pencil-square text-white"></i></a>
