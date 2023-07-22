@@ -51,7 +51,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             session(['email' => $email]);
             if($role=='admin'){
-                return redirect('/managementUser');
+                return redirect('/managementUser/guru');
             }else if($role=='guru'){
                 return redirect('/home/guru');
             }else{

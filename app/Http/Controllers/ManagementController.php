@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Absensi;
+use App\Models\KelasSiswa;
 use Illuminate\Support\Facades\Hash;
 
 class ManagementController extends Controller
@@ -182,6 +184,11 @@ class ManagementController extends Controller
         ->pluck('role')
         ->first();
         User::where('id', $id)->delete();
+        if($role=="siswa"){
+            Absensi::where('id_siswa',$id)->delete();
+            KelasSiswa::where('id_siswa',$id)->delete();
+        }
+        
         
         if($role=="guru"){
             return redirect('/managementUser/guru')->with('success', 'Data user berhasil dihapus!');
