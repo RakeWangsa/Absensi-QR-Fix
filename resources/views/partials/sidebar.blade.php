@@ -10,9 +10,9 @@
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li><a class="dropdown-item" href="/managementUser/guru">Guru</a></li>
                   <li><a class="dropdown-item" href="/managementUser/siswa">Siswa</a></li>
-                  <!-- Tambahkan item dropdown lainnya di sini -->
                   </ul>
                </div>              
+               <a class="nav-link collapsed {{ ($active === "agenda kelas") ? 'active' : '' }}" href="/agendaKelas"> <i class="bi bi-pencil-square"></i><span>Agenda Kelas</span> </a>
             @elseif (auth()->user()->role=="siswa")
                <a class="nav-link collapsed {{ ($active === "home") ? 'active' : '' }}" href="/home"> <i class="bi bi-grid"></i><span>Home</span> </a>
                <a class="nav-link collapsed {{ ($active === "daftar kelas") ? 'active' : '' }}" href="/daftarKelasSiswa"> <i class="bi bi-list-ul"></i><span>Daftar Kelas</span> </a>

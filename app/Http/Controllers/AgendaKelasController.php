@@ -13,6 +13,29 @@ use Illuminate\Support\Carbon;
 
 class AgendaKelasController extends Controller
 {
+
+    public function agendaKelas()
+    {
+        $tanggal = DB::table('agenda')
+        ->select('tanggal')
+        ->distinct()
+        ->get();
+        $kelas = DB::table('agenda')
+        ->select('kelas')
+        ->distinct()
+        ->get();
+        $agenda = DB::table('agenda')
+        ->select('*')
+        ->get();
+        return view('admin.agendaKelas', [
+            'title' => 'Agenda Kelas',
+            'active' => 'agenda kelas',
+            'agenda' => $agenda,
+            'tanggal' => $tanggal,
+            'kelas' => $kelas,
+        ]);
+    }
+
     public function buatAgendaKelas()
     {
         $hariIni = Carbon::now()->addHours(7)->toDateString();

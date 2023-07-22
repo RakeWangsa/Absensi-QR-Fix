@@ -77,5 +77,6 @@ Route::group(['middleware' => ['auth', 'cekRole:admin']], function() {
     Route::get('/editUser/{id}', [ManagementController::class, 'editUser'])->name('editUser')->middleware('auth');
     Route::get('/updateUser/{id}', [ManagementController::class, 'updateUser'])->name('updateUser')->middleware('auth');
     Route::get('/hapusUser/{id}', [ManagementController::class, 'hapusUser'])->name('hapusUser')->middleware('auth');
+    route::get('/agendaKelas', [AgendaKelasController::class, 'agendaKelas'])->name('agendaKelas')->middleware('auth');
 });
 
