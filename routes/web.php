@@ -64,6 +64,7 @@ Route::group(['middleware' => ['auth', 'cekRole:guru']], function() {
     Route::get('/editIzin/{id_kelas}/{id_siswa}/{waktu}', [AbsensiController::class, 'editIzin'])->name('editIzin')->middleware('auth');
     Route::get('/editAlfa/{id_kelas}/{id_siswa}/{waktu}', [AbsensiController::class, 'editAlfa'])->name('editAlfa')->middleware('auth');
     route::get('/agendaKelas/buat', [AgendaKelasController::class, 'buatAgendaKelas'])->name('buatAgendaKelas')->middleware('auth');
+    route::get('/agendaKelas/submit', [AgendaKelasController::class, 'submitAgendaKelas'])->name('submitAgendaKelas')->middleware('auth');
 });
 
 Route::group(['middleware' => ['auth', 'cekRole:admin']], function() {
