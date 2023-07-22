@@ -29,6 +29,25 @@ class ManagementController extends Controller
         ]);
     }
 
+    public function managementUserSiswa()
+    {
+        // $guru = DB::table('Users')
+        // ->where('role','guru')
+        // ->select('id', 'name', 'email','nomor')
+        // ->get();
+        $siswa = DB::table('Users')
+        ->where('role','siswa')
+        ->select('id', 'name', 'email','nomor')
+        ->get();
+
+        return view('managementUser.manage', [
+            'title' => 'Management User Guru',
+            'active' => 'management user',
+            // 'guru' => $guru,
+            'siswa' => $siswa,
+        ]);
+    }
+
     public function managementUserGuruSearch(Request $request)
     {
         $search=$request->nama;
@@ -37,6 +56,29 @@ class ManagementController extends Controller
         ->where('name',$search)
         ->select('id', 'name', 'email','nomor')
         ->get();
+        // $siswa = DB::table('Users')
+        // ->where('role','siswa')
+        // ->where('name',$search)
+        // ->select('id', 'name', 'email','nomor')
+        // ->get();
+
+        return view('managementUser.manage', [
+            'title' => 'Management User',
+            'active' => 'management user',
+            'guru' => $guru,
+            // 'siswa' => $siswa,
+            'search' => $search
+        ]);
+    }
+
+    public function managementUserSiswaSearch(Request $request)
+    {
+        $search=$request->nama;
+        // $guru = DB::table('Users')
+        // ->where('role','guru')
+        // ->where('name',$search)
+        // ->select('id', 'name', 'email','nomor')
+        // ->get();
         $siswa = DB::table('Users')
         ->where('role','siswa')
         ->where('name',$search)
@@ -46,7 +88,7 @@ class ManagementController extends Controller
         return view('managementUser.manage', [
             'title' => 'Management User',
             'active' => 'management user',
-            'guru' => $guru,
+            // 'guru' => $guru,
             'siswa' => $siswa,
             'search' => $search
         ]);
@@ -76,7 +118,7 @@ class ManagementController extends Controller
 
         //$request->session()->flash('success', 'Registration successfully! Please login!');
 
-        return redirect('/managementUser')->with('success', 'Registrasi Berhasil!');
+        return redirect('/managementUser/guru')->with('success', 'Registrasi Berhasil!');
     }
 
     public function editUser($id)
@@ -120,15 +162,31 @@ class ManagementController extends Controller
         }
 
         $user->save();
-
-        return redirect('/managementUser')->with('success', 'Data user berhasil diupdate!');
+        $role = DB::table('Users')
+        ->where('id',$id)
+        ->pluck('role')
+        ->first();
+        if($role=="guru"){
+            return redirect('/managementUser/guru')->with('success', 'Data user berhasil diupdate!');
+        }else{
+            return redirect('/managementUser/siswa')->with('success', 'Data user berhasil diupdate!');
+        }
+        
     }
 
     public function hapusUser($id)
     {
         $id = base64_decode($id);
+        $role = DB::table('Users')
+        ->where('id',$id)
+        ->pluck('role')
+        ->first();
         User::where('id', $id)->delete();
-
-        return redirect('/managementUser')->with('success');
+        
+        if($role=="guru"){
+            return redirect('/managementUser/guru')->with('success', 'Data user berhasil dihapus!');
+        }else{
+            return redirect('/managementUser/siswa')->with('success', 'Data user berhasil dihapus!');
+        }
     }
 }
