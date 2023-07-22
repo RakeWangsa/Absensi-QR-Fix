@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\DaftarKelasController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\AgendaKelasController;
 use App\Http\Controllers\QrCodeController;
 
 /*
@@ -62,6 +63,7 @@ Route::group(['middleware' => ['auth', 'cekRole:guru']], function() {
     Route::get('/editSakit/{id_kelas}/{id_siswa}/{waktu}', [AbsensiController::class, 'editSakit'])->name('editSakit')->middleware('auth');
     Route::get('/editIzin/{id_kelas}/{id_siswa}/{waktu}', [AbsensiController::class, 'editIzin'])->name('editIzin')->middleware('auth');
     Route::get('/editAlfa/{id_kelas}/{id_siswa}/{waktu}', [AbsensiController::class, 'editAlfa'])->name('editAlfa')->middleware('auth');
+    route::get('/agendaKelas/buat', [AgendaKelasController::class, 'buatAgendaKelas'])->name('buatAgendaKelas')->middleware('auth');
 });
 
 Route::group(['middleware' => ['auth', 'cekRole:admin']], function() {
