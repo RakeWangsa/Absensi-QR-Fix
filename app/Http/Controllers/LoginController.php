@@ -21,7 +21,7 @@ class LoginController extends Controller
             }elseif($role=="siswa"){
                 return redirect('/home');
             }elseif($role=="admin"){
-                return redirect('/managementUser');
+                return redirect('/managementUser/guru');
             }
         }
         return redirect('/login');

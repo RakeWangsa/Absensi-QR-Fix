@@ -65,7 +65,10 @@ Route::group(['middleware' => ['auth', 'cekRole:guru']], function() {
 });
 
 Route::group(['middleware' => ['auth', 'cekRole:admin']], function() {
-    Route::get('/managementUser', [ManagementController::class, 'index'])->name('managementUser')->middleware('auth');
+    Route::get('/managementUser/guru', [ManagementController::class, 'managementUserGuru'])->name('managementUserGuru')->middleware('auth');
+    Route::get('/managementUser/siswa', [ManagementController::class, 'managementUserSiswa'])->name('managementUserSiswa')->middleware('auth');
+    Route::get('/managementUser/guru/search', [ManagementController::class, 'managementUserGuruSearch'])->name('managementUserGuruSearch')->middleware('auth');
+    Route::get('/managementUser/siswa/search', [ManagementController::class, 'managementUserSiswaSearch'])->name('managementUserSiswaSearch')->middleware('auth');
     Route::get('/registerGuru', [ManagementController::class, 'tambah'])->name('registerGuru')->middleware('auth');
     Route::post('/registerGuru', [ManagementController::class, 'store'])->middleware('auth')->middleware('auth');
     Route::get('/editUser/{id}', [ManagementController::class, 'editUser'])->name('editUser')->middleware('auth');

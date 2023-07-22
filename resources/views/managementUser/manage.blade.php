@@ -8,16 +8,30 @@
             <h1>Management User</h1>
          </div>
          <div class="col-auto">
-            <a class="btn btn-primary mt-4" href="/registerGuru"><i class="bi bi-person-fill-add me-2"></i><span>Register Guru</span></a>
+            @if(isset($guru))
+            <form class="mt-4" method="GET" action="{{ route('managementUserGuruSearch') }}">
+            @else
+            <form class="mt-4" method="GET" action="{{ route('managementUserSiswaSearch') }}">
+            @endif
+               <div class="input-group">
+                 <label class="col-form-label" style="padding-right: 10px;">Search :</label>
+                 <input name="nama" type="text" class="form-control" @if(isset($search)) value="{{ $search }}" @endif>
+                 <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+               </div>
+            </form>
          </div>
       </div>
+      @if(isset($guru))
+         <div class="d-flex justify-content-start">
+            <a class="btn btn-primary mt-4" href="/registerGuru"><i class="bi bi-person-fill-add me-2"></i><span>Register Guru</span></a>
+         </div>
+     @endif
    </div>
-   
 </div>
 
 <style>
    .table-container {
-     max-height: 200px;
+     max-height: 500px;
      overflow-y: scroll;
    }
    
@@ -42,6 +56,7 @@
 
 
 <div class="row">
+   @if(isset($guru))
       <div class="card col-md-12 mt-2 pb-4">
          <div class="card-body">
              <h5 class="card-title">Daftar Guru</h5>
@@ -83,6 +98,7 @@
          </div>
       </div>
 
+      @else
       <div class="card col-md-12 mt-2 pb-4">
         <div class="card-body">
             <h5 class="card-title">Daftar Siswa</h5>
@@ -124,5 +140,6 @@
            </div>
         </div>
      </div>
+     @endif
 </div>
 @endsection

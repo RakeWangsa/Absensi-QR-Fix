@@ -3,7 +3,16 @@
       <li class="nav-item">
          @auth
             @if (auth()->user()->role=="admin")
-               <a class="nav-link collapsed {{ ($active === "management user") ? 'active' : '' }}" href="/managementUser"> <i class="bi bi-people"></i><span>Management User</span> </a>              
+               <div class="dropdown">
+                  <a class="nav-link dropdown-toggle {{ ($active === "management user") ? 'active' : '' }}" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-people"></i><span>Management User</span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="/managementUser/guru">Guru</a></li>
+                  <li><a class="dropdown-item" href="/managementUser/siswa">Siswa</a></li>
+                  <!-- Tambahkan item dropdown lainnya di sini -->
+                  </ul>
+               </div>              
             @elseif (auth()->user()->role=="siswa")
                <a class="nav-link collapsed {{ ($active === "home") ? 'active' : '' }}" href="/home"> <i class="bi bi-grid"></i><span>Home</span> </a>
                <a class="nav-link collapsed {{ ($active === "daftar kelas") ? 'active' : '' }}" href="/daftarKelasSiswa"> <i class="bi bi-list-ul"></i><span>Daftar Kelas</span> </a>

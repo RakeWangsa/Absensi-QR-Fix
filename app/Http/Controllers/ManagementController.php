@@ -10,14 +10,36 @@ use Illuminate\Support\Facades\Hash;
 
 class ManagementController extends Controller
 {
-    public function index()
+    public function managementUserGuru()
     {
         $guru = DB::table('Users')
         ->where('role','guru')
         ->select('id', 'name', 'email','nomor')
         ->get();
+        // $siswa = DB::table('Users')
+        // ->where('role','siswa')
+        // ->select('id', 'name', 'email','nomor')
+        // ->get();
+
+        return view('managementUser.manage', [
+            'title' => 'Management User Guru',
+            'active' => 'management user',
+            'guru' => $guru,
+            // 'siswa' => $siswa,
+        ]);
+    }
+
+    public function managementUserGuruSearch(Request $request)
+    {
+        $search=$request->nama;
+        $guru = DB::table('Users')
+        ->where('role','guru')
+        ->where('name',$search)
+        ->select('id', 'name', 'email','nomor')
+        ->get();
         $siswa = DB::table('Users')
         ->where('role','siswa')
+        ->where('name',$search)
         ->select('id', 'name', 'email','nomor')
         ->get();
 
@@ -26,6 +48,7 @@ class ManagementController extends Controller
             'active' => 'management user',
             'guru' => $guru,
             'siswa' => $siswa,
+            'search' => $search
         ]);
     }
 
