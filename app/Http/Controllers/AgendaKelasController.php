@@ -36,14 +36,14 @@ class AgendaKelasController extends Controller
         ]);
     }
 
-    public function agendaKelasCetak($kelas)
+    public function agendaKelasCetak($cetak)
     {
         $tanggal = DB::table('agenda')
         ->select('tanggal')
         ->distinct()
         ->get();
         $kelas = DB::table('agenda')
-        ->where('kelas',$kelas)
+        ->where('kelas',$cetak)
         ->select('kelas')
         ->distinct()
         ->get();
@@ -56,6 +56,7 @@ class AgendaKelasController extends Controller
             'agenda' => $agenda,
             'tanggal' => $tanggal,
             'kelas' => $kelas,
+            'cetak' => $cetak,
         ]);
     }
 
