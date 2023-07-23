@@ -36,6 +36,29 @@ class AgendaKelasController extends Controller
         ]);
     }
 
+    public function agendaKelasCetak($kelas)
+    {
+        $tanggal = DB::table('agenda')
+        ->select('tanggal')
+        ->distinct()
+        ->get();
+        $kelas = DB::table('agenda')
+        ->where('kelas',$kelas)
+        ->select('kelas')
+        ->distinct()
+        ->get();
+        $agenda = DB::table('agenda')
+        ->select('*')
+        ->get();
+        return view('admin.agendaKelasCetak', [
+            'title' => 'Agenda Kelas',
+            'active' => 'agenda kelas',
+            'agenda' => $agenda,
+            'tanggal' => $tanggal,
+            'kelas' => $kelas,
+        ]);
+    }
+
     public function buatAgendaKelas()
     {
         $hariIni = Carbon::now()->addHours(7)->toDateString();
