@@ -8,26 +8,45 @@
             <h1 style="text-align: left;">Agenda Kelas</h1>
          </div>
          <div class="col text-right" style="text-align: right;">
-            {{-- <div class="dropdown d-inline-block">
+            <div class="dropdown d-inline-block">
                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="bi bi-search"></i> Filter
+                  <span class="bi bi-download"></span> Download Rekap
                </button>
                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{{ route('daftarSiswa', ['id' => base64_encode($id)]) }}">Tidak ada</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '1']) }}">Januari</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '2']) }}">Februari</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '3']) }}">Maret</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '4']) }}">April</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '5']) }}">Mei</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '6']) }}">Juni</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '7']) }}">Juli</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '8']) }}">Agustus</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '9']) }}">September</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '10']) }}">Oktober</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '11']) }}">November</a></li>
-                 <li><a class="dropdown-item" href="{{ route('daftarSiswaFilter', ['id' => base64_encode($id),'filter' => '12']) }}">Desember</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X1']) }}">X1</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X2']) }}">X2</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X3']) }}">X3</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X4']) }}">X4</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X5']) }}">X5</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X6']) }}">X6</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X7']) }}">X7</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X8']) }}">X8</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'X9']) }}">X9</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 1']) }}">XI IPA 1</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 2']) }}">XI IPA 2</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 3']) }}">XI IPA 3</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 4']) }}">XI IPA 4</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 5']) }}">XI IPA 5</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPA 6']) }}">XI IPA 6</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 1']) }}">XI IPS 1</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 2']) }}">XI IPS 2</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 3']) }}">XI IPS 3</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 4']) }}">XI IPS 4</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 5']) }}">XI IPS 5</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 1']) }}">XII IPA 1</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 2']) }}">XII IPA 2</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 3']) }}">XII IPA 3</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 4']) }}">XII IPA 4</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 5']) }}">XII IPA 5</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPA 6']) }}">XII IPA 6</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 1']) }}">XII IPS 1</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 2']) }}">XII IPS 2</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 3']) }}">XII IPS 3</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 4']) }}">XII IPS 4</a></li>
+                  <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 5']) }}">XII IPS 5</a></li>
+
                </ul>
-             </div> --}}
+             </div>
             <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button>
             <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Harian</button>
          </div>
