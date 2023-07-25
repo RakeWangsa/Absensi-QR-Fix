@@ -43,10 +43,7 @@
         @foreach($tanggal as $itemss)
         
         @foreach($kelas as $items)
-        <p>tes</p>
-        <div class="row">
-           <div class="card col-md-12 mt-2 pb-4">
-              <div class="card-body">
+
                  <div class="row align-items-center">
                     <div class="col">
                        <h5 class="card-title">{{ $items->kelas }} ({{ date('Y-m-d', strtotime($itemss->tanggal)) }})</h5>
@@ -59,16 +56,16 @@
                  <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
                  <button id="excels" class="btn btn-primary"><span class="bi bi-download"></span> Download Excel</button>
                  </div> --}}
-                  <div class="table-container border">
-                  <table>
+                  <div>
+                  <table class="table table-bordered" style="border-color:black">
                      <thead>
                         <tr>
-                         <th scope="col" class="text-center">No</th>
-                         <th scope="col" class="text-center">Guru</th>
-                         <th scope="col" class="text-center">Jam</th>
-                         <th scope="col" class="text-center">Mata Pelajaran</th>
-                         <th scope="col" class="text-center">Pokok Bahasan</th>
-                         <th scope="col" class="text-center">Kehadiran</th>
+                         <th scope="col" class="text-center px-4">No</th>
+                         <th scope="col" class="text-center px-4">Guru</th>
+                         <th scope="col" class="text-center px-4">Jam</th>
+                         <th scope="col" class="text-center px-4">Mata Pelajaran</th>
+                         <th scope="col" class="text-center px-4">Pokok Bahasan</th>
+                         <th scope="col" class="text-center px-4">Kehadiran</th>
                         </tr>
                      </thead>
                      
@@ -101,13 +98,14 @@
                      </tbody>
                   </table>
                  </div>
-              </div>
-           </div>
+
+        @endforeach
+        @endforeach
+        <div style="float: right;">
+         <p class="mt-2 pb-4">Kepala Sekolah</p>
+         <p class="mt-4">tes</p>
         </div>
-        @endforeach
-        @endforeach
-        <p class="mt-2 pb-4">Kepala Sekolah</p>
-        <p class="mt-4">tes</p>
+        
 
 
       
@@ -117,9 +115,9 @@
       </div>
     </div>
   </div>
-  {{-- <script type="text/javascript">
+  <script type="text/javascript">
     window.print();
-  </script> --}}
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
   </body>
 </html>
