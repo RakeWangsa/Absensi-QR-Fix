@@ -13,6 +13,7 @@
                   </ul>
                </div>              
                <a class="nav-link collapsed {{ ($active === "agenda kelas") ? 'active' : '' }}" href="/agendaKelas"> <i class="bi bi-pencil-square"></i><span>Agenda Kelas</span> </a>
+               <a class="nav-link collapsed {{ ($active === "absensi guru") ? 'active' : '' }}" href="/absensiGuru"> <i class="bi bi-clipboard2"></i><span>Absensi Guru</span> </a>
             @elseif (auth()->user()->role=="siswa")
                <a class="nav-link collapsed {{ ($active === "home") ? 'active' : '' }}" href="/home"> <i class="bi bi-grid"></i><span>Home</span> </a>
                <a class="nav-link collapsed {{ ($active === "daftar kelas") ? 'active' : '' }}" href="/daftarKelasSiswa"> <i class="bi bi-list-ul"></i><span>Daftar Kelas</span> </a>

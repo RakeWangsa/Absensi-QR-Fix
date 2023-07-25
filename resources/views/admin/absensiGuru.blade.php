@@ -5,11 +5,11 @@
    <div class="container">
       <div class="row align-items-center">
          <div class="col">
-            <h1 style="text-align: left;">Agenda Kelas</h1>
+            <h1 style="text-align: left;">Absensi Guru</h1>
          </div>
          <div class="col text-right" style="text-align: right;">
 
-            <div class="dropdown d-inline-block">
+            {{-- <div class="dropdown d-inline-block">
                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="bi bi-search"></i> Search
                </button>
@@ -98,7 +98,7 @@
                   <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XI IPS 4']) }}">XII IPS 4</a></li>
                   <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPS 5']) }}">XII IPS 5</a></li>
                </ul>
-            </div>
+            </div> --}}
             
             {{-- <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button> --}}
             {{-- <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Harian</button> --}}
@@ -204,60 +204,46 @@
 @endif --}}
 
 {{-- @php($nomer=1) --}}
-@foreach($tanggal as $itemss)
-@foreach($kelas as $items)
+{{-- @foreach($guru as $items) --}}
 <div class="row">
    <div class="card col-md-12 mt-2 pb-4">
       <div class="card-body">
          <div class="row align-items-center">
             <div class="col">
-               <h5 class="card-title">{{ $items->kelas }} ({{ date('Y-m-d', strtotime($itemss->tanggal)) }})</h5>
+               <h5 class="card-title"></h5>
             </div>
-            <div class="col text-right">
-               {{-- <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button> --}}
-            </div>
+            {{-- <div class="col text-right">
+              
+            </div> --}}
          </div>
-         {{-- <div class="row">
-         <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
-         <button id="excels" class="btn btn-primary"><span class="bi bi-download"></span> Download Excel</button>
-         </div> --}}
           <div class="table-container border">
           <table>
              <thead>
                 <tr>
                  <th scope="col" class="text-center">No</th>
-                 <th scope="col" class="text-center">Guru</th>
-                 <th scope="col" class="text-center">Jam</th>
-                 <th scope="col" class="text-center">Mata Pelajaran</th>
-                 <th scope="col" class="text-center">Pokok Bahasan</th>
-                 <th scope="col" class="text-center">Kehadiran</th>
+                 <th scope="col" class="text-center">Nama</th>
+                 <th scope="col" class="text-center">Jumlah Kehadiran</th>
                 </tr>
              </thead>
              
              <tbody>
-               @if(isset($search))
-                  @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('nama', $search)->where('id_kelas', $id)->get())
-               @else
-                  @php($agenda = \App\Models\Agenda::whereDate('tanggal', $itemss->tanggal)->where('kelas', $items->kelas)->get())
-               @endif
+               
                @php($no=1)
-               @if(count($agenda) > 0)
-               @foreach($agenda as $item)               
+               @if(count($guru) > 0)
+               @foreach($guru as $item)               
                {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
+               @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->get())
                 <tr>
                    <td scope="row" class="text-center">{{ $no++ }}</td>
                    {{-- <td class="text-center">{{ $user[0]->nomor }}</td> --}}
-                   <td class="text-center">{{ $item->guru }}</td>
-                   <td class="text-center">{{ $item->jam }}</td>
-                   <td class="text-center">{{ $item->pelajaran }}</td>
-                   <td class="text-center">{{ $item->bahasan }}</td>
-                   <td class="text-center">{{ $item->kehadiran }}</td>
+                   <td class="text-center">{{ $item->name }}</td>
+                   <td class="text-center">{{ $item->id }}</td>
                 </tr>
                 @endforeach
                 
                 @else
                 <tr>
-                  <td colspan="6" class="text-center">Tidak ada agenda</td>
+                  <td colspan="6" class="text-center">Tidak ada data</td>
                 </tr>
                 @endif
              </tbody>
@@ -266,8 +252,7 @@
       </div>
    </div>
 </div>
-@endforeach
-@endforeach
+{{-- @endforeach --}}
 
 
 {{-- table buat di print (rekap) --}}

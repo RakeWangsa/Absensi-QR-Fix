@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cetak Agenda Kelas</title>
+    <title>Rekap Agenda Kelas {{ $cetak }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
@@ -103,7 +103,8 @@
         @endforeach
         <div style="float: right;">
          <p class="mt-2 pb-4">Kepala Sekolah</p>
-         <p class="mt-4">tes</p>
+         <p class="mt-4">Rakev Tionardi</p>
+         <p>NIP. 24060120130118</p>
         </div>
         
 

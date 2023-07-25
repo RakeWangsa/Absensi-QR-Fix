@@ -36,6 +36,29 @@ class AgendaKelasController extends Controller
         ]);
     }
 
+    public function agendaKelasSearch($search)
+    {
+        $tanggal = DB::table('agenda')
+        ->select('tanggal')
+        ->distinct()
+        ->get();
+        $kelas = DB::table('agenda')
+        ->select('kelas')
+        ->where('kelas',$search)
+        ->distinct()
+        ->get();
+        $agenda = DB::table('agenda')
+        ->select('*')
+        ->get();
+        return view('admin.agendaKelas', [
+            'title' => 'Agenda Kelas',
+            'active' => 'agenda kelas',
+            'agenda' => $agenda,
+            'tanggal' => $tanggal,
+            'kelas' => $kelas,
+        ]);
+    }
+
     public function agendaKelasCetak($cetak)
     {
         $tanggal = DB::table('agenda')
@@ -91,6 +114,11 @@ class AgendaKelasController extends Controller
         ], $messages);
 
         // dd($request->tgl,$request->kelas,$request->guru,$request->jam,$request->pelajaran,$request->bahasan,$request->kehadiran);
+        if($request->kehadiran=="hadir"){
+            $kehadiran="hadir";
+        }else{
+            $kehadiran="tidak hadir";
+        }
         Agenda::insert([
                 'tanggal' => $request->tgl,
                 'kelas' => $request->kelas,
@@ -98,9 +126,37 @@ class AgendaKelasController extends Controller
                 'jam' => $request->jam,
                 'pelajaran' => $request->pelajaran,
                 'bahasan' => $request->bahasan,
-                'kehadiran' => $request->kehadiran,
+                'kehadiran' => $kehadiran,
             ]);
 
         return redirect('/home/guru')->with('success');
+    }
+
+    public function absensiGuru()
+    {
+        $guru = DB::table('Users')
+        ->where('role','guru')
+        ->select('*')
+        ->get();
+
+        $tanggal = DB::table('agenda')
+        ->select('tanggal')
+        ->distinct()
+        ->get();
+        $kelas = DB::table('agenda')
+        ->select('kelas')
+        ->distinct()
+        ->get();
+        $agenda = DB::table('agenda')
+        ->select('*')
+        ->get();
+        return view('admin.absensiGuru', [
+            'title' => 'Absensi Guru',
+            'active' => 'absensi guru',
+            'agenda' => $agenda,
+            'tanggal' => $tanggal,
+            'kelas' => $kelas,
+            'guru' => $guru,
+        ]);
     }
 }
