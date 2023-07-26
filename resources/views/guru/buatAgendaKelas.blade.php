@@ -21,6 +21,7 @@
                     </div>
                     <form class="row g-3 mt-3" method="GET" action="{{route('submitAgendaKelas')}}">
                         <div class="col-md-12"> <label for="tgl" class="form-label">Tanggal :</label> <input type="text" class="form-control" id="tgl" name="tgl" value="{{ $hariIni }}" readonly></div>
+                        <div class="col-md-12"> <label for="tahun_ajaran" class="form-label">Tahun Ajaran :</label> <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" value="{{ $tahunAjaran }}" readonly></div>
                         <div class="col-md-12">
                             <label for="kelas" class="form-label">Kelas :</label> 
                             <select id="kelas" class="form-select" name="kelas">
@@ -90,7 +91,38 @@
                             </select>
                         </div>
                         <div class="col-md-12"> <label for="jam" class="form-label">Jam :</label> <input type="text" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required></div>
-                        <div class="col-md-12"> <label for="pelajaran" class="form-label">Mata Pelajaran :</label> <input type="text" class="form-control" id="pelajaran" name="pelajaran" value="{{ old('pelajaran') }}" required></div>
+                        {{-- <div class="col-md-12"> <label for="pelajaran" class="form-label">Mata Pelajaran :</label> <input type="text" class="form-control" id="pelajaran" name="pelajaran" value="{{ old('pelajaran') }}" required></div> --}}
+                        <div class="col-md-12">
+                            <label for="pelajaran" class="form-label">Mata Pelajaran :</label> 
+                            <select id="pelajaran" class="form-select" name="pelajaran">
+                                <option>Pilih Pelajaran!</option>
+                                <option value="Kimia">Kimia</option>
+                                <option value="Ekonomi">Ekonomi</option>
+                                <option value="Fisika">Fisika</option>
+                                <option value="Sejarah Indonesia">Sejarah Indonesia</option>
+                                <option value="Biologi">Biologi</option>
+                                <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                                <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                <option value="Matematika">Matematika</option>
+                                <option value="Sejarah Peminatan">Sejarah Peminatan</option>
+                                <option value="Pendidikan Pancasila dan Kewarganegaraan">Pendidikan Pancasila dan Kewarganegaraan</option>
+                                <option value="Sosiologi">Sosiologi</option>
+                                <option value="Geografi">Geografi</option>
+                                <option value="Bahasa Jepang">Bahasa Jepang</option>
+                                <option value="Bahasa Arab">Bahasa Arab</option>
+                                <option value="Prakarya dan Kewirausahaan">Prakarya dan Kewirausahaan</option>
+                                <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                                <option value="PJOK">PJOK</option>
+                                <option value="Sejarah">Sejarah</option>
+                                <option value="Seni Budaya dan Keterampilan">Seni Budaya dan Keterampilan</option>
+                                <option value="PKWU">PKWU</option>
+                                <option value="Pendidikan Agama Kristen">Pendidikan Agama Kristen</option>
+                                <option value="Biologi Lintas Minat">Biologi Lintas Minat</option>
+                                <option value="Geografi Lintas Minat">Geografi Lintas Minat</option>
+                                <option value="Matematika Peminatan">Matematika Peminatan</option>
+                                <option value="Informatika">Informatika</option>
+                            </select>
+                        </div>
                         <div class="col-md-12"> <label for="bahasan" class="form-label">Pokok Bahasan :</label> <input type="text" class="form-control" id="bahasan" name="bahasan" value="{{ old('bahasan') }}" required></div>
                         <div class="col-md-12"> <label for="kehadiran" class="form-label">Kehadiran :</label> <input class="form-check-input" style="margin-right:5px" type="checkbox" value="hadir" name="kehadiran" id="kehadiran"><label>Hadir</label></div>
                         <div class="text-center mb-5 mt-4"> <button type="submit" class="btn btn-primary">Submit</button> <button type="reset" class="btn btn-secondary">Reset</button></div>

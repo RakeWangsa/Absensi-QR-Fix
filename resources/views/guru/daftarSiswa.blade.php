@@ -210,7 +210,7 @@
          <th class="text-center">Pengajar : {{ $info->guru }}</th>
       </tr>
       <tr>
-         <th class="text-center">Tahun Ajaran : {{ $tahunAjaran }}</th>
+         <th class="text-center">Tahun Ajaran : {{ $info->tahun_ajaran }}</th>
       </tr>
       <tr>
       </tr>
@@ -305,7 +305,7 @@
 <script>
    const pelajaran = "<?php echo $info->pelajaran; ?>";
    const kelas = "<?php echo $info->ruang; ?>";
-   const tahunAjaran = "<?php echo $tahunAjaran; ?>";
+   const tahunAjaran = "<?php echo $info->tahun_ajaran; ?>";
    const tahunAjaranFormatted = tahunAjaran.replace("/", "-");
 
    document.getElementById('excel').addEventListener('click',function(){

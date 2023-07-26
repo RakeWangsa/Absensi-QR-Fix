@@ -50,16 +50,16 @@ class DaftarKelasController extends Controller
             ->select('*')
             ->first();
 
-        $skrg = Carbon::now()->addHours(7);
-        $tahun = $skrg->year;
-        $bulan = $skrg->month;
-        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
-        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
-        if($bulan>6){
-            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
-        }else{
-            $tahunAjaran=$tahunSebelumnya."/".$tahun;
-        }
+        // $skrg = Carbon::now()->addHours(7);
+        // $tahun = $skrg->year;
+        // $bulan = $skrg->month;
+        // $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        // $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        // if($bulan>6){
+        //     $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        // }else{
+        //     $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        // }
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
@@ -68,7 +68,7 @@ class DaftarKelasController extends Controller
             'id' => $id,
             'waktuAbsen' => $waktuAbsen,
             'info' => $info,
-            'tahunAjaran' => $tahunAjaran
+            // 'tahunAjaran' => $tahunAjaran
         ]);
     }
 
@@ -89,16 +89,16 @@ class DaftarKelasController extends Controller
             ->select('*')
             ->first();
 
-        $skrg = Carbon::now()->addHours(7);
-        $tahun = $skrg->year;
-        $bulan = $skrg->month;
-        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
-        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
-        if($bulan>6){
-            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
-        }else{
-            $tahunAjaran=$tahunSebelumnya."/".$tahun;
-        }
+        // $skrg = Carbon::now()->addHours(7);
+        // $tahun = $skrg->year;
+        // $bulan = $skrg->month;
+        // $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        // $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        // if($bulan>6){
+        //     $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        // }else{
+        //     $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        // }
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
@@ -107,7 +107,7 @@ class DaftarKelasController extends Controller
             'id' => $id,
             'waktuAbsen' => $waktuAbsen,
             'info' => $info,
-            'tahunAjaran' => $tahunAjaran,
+            // 'tahunAjaran' => $tahunAjaran,
             'filter' => $filter,
         ]);
     }
@@ -130,16 +130,16 @@ class DaftarKelasController extends Controller
             ->select('*')
             ->first();
 
-        $skrg = Carbon::now()->addHours(7);
-        $tahun = $skrg->year;
-        $bulan = $skrg->month;
-        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
-        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
-        if($bulan>6){
-            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
-        }else{
-            $tahunAjaran=$tahunSebelumnya."/".$tahun;
-        }
+        // $skrg = Carbon::now()->addHours(7);
+        // $tahun = $skrg->year;
+        // $bulan = $skrg->month;
+        // $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        // $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        // if($bulan>6){
+        //     $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        // }else{
+        //     $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        // }
 
         return view('guru.daftarSiswa', [
             'title' => 'Daftar Siswa',
@@ -148,7 +148,7 @@ class DaftarKelasController extends Controller
             'id' => $id,
             'waktuAbsen' => $waktuAbsen,
             'info' => $info,
-            'tahunAjaran' => $tahunAjaran,
+            // 'tahunAjaran' => $tahunAjaran,
             'search' => $search,
         ]);
     }

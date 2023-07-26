@@ -90,11 +90,22 @@ class AgendaKelasController extends Controller
         ->where('role','guru')
         ->select('*')
         ->get();
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         return view('guru.buatAgendaKelas', [
             'title' => 'Buat Agenda Kelas',
             'active' => 'agenda kelas',
             'hariIni' => $hariIni,
-            'guru' => $guru
+            'guru' => $guru,
+            'tahunAjaran' => $tahunAjaran,
         ]);
     }
 
@@ -121,6 +132,7 @@ class AgendaKelasController extends Controller
         }
         Agenda::insert([
                 'tanggal' => $request->tgl,
+                'tahun_ajaran' => $request->tahun_ajaran,
                 'kelas' => $request->kelas,
                 'guru' => $request->guru,
                 'jam' => $request->jam,
