@@ -232,12 +232,13 @@
                @if(count($guru) > 0)
                @foreach($guru as $item)               
                {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
-               @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->get())
+               @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->where('kehadiran', 'hadir')->get())
+               @php($countAbsensiGuru = $absensiGuru->count())
                 <tr>
                    <td scope="row" class="text-center">{{ $no++ }}</td>
                    {{-- <td class="text-center">{{ $user[0]->nomor }}</td> --}}
                    <td class="text-center">{{ $item->name }}</td>
-                   <td class="text-center">{{ $item->id }}</td>
+                   <td class="text-center">{{ $countAbsensiGuru }}</td>
                 </tr>
                 @endforeach
                 
