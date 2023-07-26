@@ -160,10 +160,21 @@ class DaftarKelasController extends Controller
         ->where('email',$email)
         ->pluck('name')
         ->first();
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         return view('guru.tambahKelas', [
             'title' => 'Tambah Kelas',
             'active' => 'tambah kelas',
-            'name' => $name
+            'name' => $name,
+            'tahunAjaran' => $tahunAjaran
         ]);
     }
 
@@ -191,6 +202,7 @@ class DaftarKelasController extends Controller
                 'ruang' => $request->ruang,
                 'hari' => $request->hari,
                 'waktu' => $request->waktu,
+                'tahun_ajaran' => $request->tahun_ajaran
             ]);
 
         return redirect('/daftarKelas')->with('success');
@@ -201,7 +213,7 @@ class DaftarKelasController extends Controller
         $id = base64_decode($id);
         $kelas = DB::table('kelas')
         ->where('id',$id)
-        ->select('id', 'ruang', 'pelajaran', 'guru', 'hari', 'waktu')
+        ->select('id', 'ruang', 'pelajaran', 'guru', 'hari', 'waktu', 'tahun_ajaran')
         ->get();
         return view('guru.editKelas', [
             "title" => "Edit User",

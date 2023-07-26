@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('hari');
             $table->time('waktu');
             $table->string('guru');
+            $table->string('tahun_ajaran');
             $table->string('code_absen')->nullable();
             $table->datetime('waktu_absen')->nullable();
         });

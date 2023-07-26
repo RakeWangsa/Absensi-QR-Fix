@@ -9,5 +9,5 @@ class Kelas extends Model
 {
     use HasFactory;
     protected $table = 'kelas';
-    protected $fillable = ['id','ruang', 'pelajaran', 'hari', 'waktu', 'guru', 'code_absen', 'waktu_absen'];
+    protected $fillable = ['id','ruang', 'pelajaran', 'hari', 'waktu', 'guru', 'tahun_ajaran', 'code_absen', 'waktu_absen'];
 }

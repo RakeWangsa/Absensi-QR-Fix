@@ -21,6 +21,7 @@
                     </div>
                     <form class="row g-3 mt-3" method="GET" action="{{route('tambahKelasSubmit')}}">
                         <div class="col-md-12"> <label for="guru" class="form-label">Pengajar :</label> <input type="text" class="form-control" id="guru" name="guru" value="{{ $name }}" readonly></div>
+                        <div class="col-md-12"> <label for="tahun_ajaran" class="form-label">Tahun Ajaran :</label> <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" value="{{ $tahunAjaran }}" readonly></div>
                         {{-- <div class="col-md-12"> <label for="ruang" class="form-label">Kelas :</label> <input type="text" class="form-control" id="ruang" name="ruang" value="{{ old('ruang') }}"></div> --}}
                         <div class="col-md-12">
                             <label for="ruang" class="form-label">Kelas :</label> 

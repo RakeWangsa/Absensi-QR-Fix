@@ -21,6 +21,7 @@
                     </div>
                     <form class="row g-3 mt-3" method="GET" action="{{route('updateKelas', ['id' => base64_encode($id)])}}">
                         <div class="col-md-12"> <label for="guru" class="form-label">Pengajar :</label> <input type="text" class="form-control" id="guru" name="guru" value="{{ $kelas[0]->guru }}" readonly></div>
+                        <div class="col-md-12"> <label for="tahun_ajaran" class="form-label">Tahun Ajaran :</label> <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" value="{{ $kelas[0]->tahun_ajaran }}" readonly></div>
                         {{-- <div class="col-md-12"> <label for="ruang" class="form-label">Ruang Kelas :</label> <input type="text" class="form-control" id="ruang" name="ruang" value="{{ $kelas[0]->ruang }}"></div> --}}
                         <div class="col-md-12">
                             <label for="ruang" class="form-label">Kelas :</label> 
