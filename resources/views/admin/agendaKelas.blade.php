@@ -5,7 +5,7 @@
    <div class="container">
       <div class="row align-items-center">
          <div class="col">
-            <h1 style="text-align: left;">Agenda Kelas</h1>
+            <h1 style="text-align: left;">Agenda Kelas (Tahun Ajaran {{ $tahunAjaran }})</h1>
          </div>
          <div class="col text-right" style="text-align: right;">
 

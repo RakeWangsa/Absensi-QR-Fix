@@ -16,7 +16,18 @@ class AgendaKelasController extends Controller
 
     public function agendaKelas()
     {
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         $tanggal = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('tanggal')
         ->distinct()
         ->get();
@@ -25,20 +36,34 @@ class AgendaKelasController extends Controller
         ->distinct()
         ->get();
         $agenda = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('*')
         ->get();
+        
         return view('admin.agendaKelas', [
             'title' => 'Agenda Kelas',
             'active' => 'agenda kelas',
             'agenda' => $agenda,
             'tanggal' => $tanggal,
             'kelas' => $kelas,
+            'tahunAjaran' => $tahunAjaran,
         ]);
     }
 
     public function agendaKelasSearch($search)
     {
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         $tanggal = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('tanggal')
         ->distinct()
         ->get();
@@ -48,6 +73,7 @@ class AgendaKelasController extends Controller
         ->distinct()
         ->get();
         $agenda = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('*')
         ->get();
         return view('admin.agendaKelas', [
@@ -56,12 +82,24 @@ class AgendaKelasController extends Controller
             'agenda' => $agenda,
             'tanggal' => $tanggal,
             'kelas' => $kelas,
+            'tahunAjaran' => $tahunAjaran,
         ]);
     }
 
     public function agendaKelasCetak($cetak)
     {
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         $tanggal = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('tanggal')
         ->distinct()
         ->get();
@@ -71,6 +109,7 @@ class AgendaKelasController extends Controller
         ->distinct()
         ->get();
         $agenda = DB::table('agenda')
+        ->where('tahun_ajaran',$tahunAjaran)
         ->select('*')
         ->get();
         return view('admin.agendaKelasCetak', [
@@ -80,6 +119,7 @@ class AgendaKelasController extends Controller
             'tanggal' => $tanggal,
             'kelas' => $kelas,
             'cetak' => $cetak,
+            'tahunAjaran' => $tahunAjaran,
         ]);
     }
 

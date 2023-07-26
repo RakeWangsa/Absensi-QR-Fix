@@ -100,7 +100,7 @@
                </ul>
             </div> --}}
             
-            {{-- <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button> --}}
+            <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button>
             {{-- <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Harian</button> --}}
          </div>
       </div>

@@ -13,7 +13,7 @@
       <div class="card-body" style="margin: top 10px;">
         <div class="mt-2 mb-4">
             <h5 class="text-center mt-4">Agenda Kelas {{ $cetak }}</h5>
-            <h5 class="text-center mb-4">Tahun Ajaran</h5>
+            <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
 
         </div>
         <style type="text/css">
@@ -98,14 +98,14 @@
                      </tbody>
                   </table>
                  </div>
-
+                 <div style="float: right;">
+                  <p class="mt-2 pb-4">Kepala Sekolah</p>
+                  <p class="mt-4">Rakev Tionardi</p>
+                  <p>NIP. 24060120130118</p>
+                 </div>
         @endforeach
         @endforeach
-        <div style="float: right;">
-         <p class="mt-2 pb-4">Kepala Sekolah</p>
-         <p class="mt-4">Rakev Tionardi</p>
-         <p>NIP. 24060120130118</p>
-        </div>
+        
         
 
 
