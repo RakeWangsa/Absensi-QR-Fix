@@ -81,5 +81,6 @@ Route::group(['middleware' => ['auth', 'cekRole:admin']], function() {
     route::get('/agendaKelas/{search}', [AgendaKelasController::class, 'agendaKelasSearch'])->name('agendaKelasSearch')->middleware('auth');
     route::get('/agendaKelas/cetak/{cetak}', [AgendaKelasController::class, 'agendaKelasCetak'])->name('agendaKelasCetak')->middleware('auth');
     route::get('/absensiGuru', [AgendaKelasController::class, 'absensiGuru'])->name('absensiGuru')->middleware('auth');
+    route::get('/absensiGuru/cetak', [AgendaKelasController::class, 'absensiGuruCetak'])->name('absensiGuruCetak')->middleware('auth');
 });
 

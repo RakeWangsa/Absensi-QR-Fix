@@ -99,8 +99,8 @@
                   <li><a class="dropdown-item" href="{{ route('agendaKelasCetak', ['cetak' => 'XII IPS 5']) }}">XII IPS 5</a></li>
                </ul>
             </div> --}}
-            
-            <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button>
+            <a class="btn btn-primary d-inline-block" href="{{ route('absensiGuruCetak') }}"><span class="bi bi-download"></span> Download Rekap</a>
+            {{-- <button id="excel" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Rekap</button> --}}
             {{-- <button id="excel2" class="btn btn-primary d-inline-block"><span class="bi bi-download"></span> Download Harian</button> --}}
          </div>
       </div>
@@ -232,7 +232,7 @@
                @if(count($guru) > 0)
                @foreach($guru as $item)               
                {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
-               @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->where('kehadiran', 'hadir')->get())
+               @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->where('kehadiran', 'hadir')->where('tahun_ajaran', $tahunAjaran)->get())
                @php($countAbsensiGuru = $absensiGuru->count())
                 <tr>
                    <td scope="row" class="text-center">{{ $no++ }}</td>

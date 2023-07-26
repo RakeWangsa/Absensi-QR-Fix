@@ -186,29 +186,49 @@ class AgendaKelasController extends Controller
 
     public function absensiGuru()
     {
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
         $guru = DB::table('Users')
         ->where('role','guru')
-        ->select('*')
-        ->get();
-
-        $tanggal = DB::table('agenda')
-        ->select('tanggal')
-        ->distinct()
-        ->get();
-        $kelas = DB::table('agenda')
-        ->select('kelas')
-        ->distinct()
-        ->get();
-        $agenda = DB::table('agenda')
         ->select('*')
         ->get();
         return view('admin.absensiGuru', [
             'title' => 'Absensi Guru',
             'active' => 'absensi guru',
-            'agenda' => $agenda,
-            'tanggal' => $tanggal,
-            'kelas' => $kelas,
             'guru' => $guru,
+            'tahunAjaran' => $tahunAjaran,
+        ]);
+    }
+
+    public function absensiGuruCetak()
+    {
+        $skrg = Carbon::now()->addHours(7);
+        $tahun = $skrg->year;
+        $bulan = $skrg->month;
+        $tahunSelanjutnya = Carbon::now()->addHours(7)->addYears(1)->year;
+        $tahunSebelumnya = Carbon::now()->addHours(7)->subYears(1)->year;
+        if($bulan>6){
+            $tahunAjaran=$tahun."/".$tahunSelanjutnya;
+        }else{
+            $tahunAjaran=$tahunSebelumnya."/".$tahun;
+        }
+        $guru = DB::table('Users')
+        ->where('role','guru')
+        ->select('*')
+        ->get();
+        return view('admin.absensiGuruCetak', [
+            'title' => 'Agenda Kelas',
+            'active' => 'agenda kelas',
+            'guru' => $guru,
+            'tahunAjaran' => $tahunAjaran,
         ]);
     }
 }
