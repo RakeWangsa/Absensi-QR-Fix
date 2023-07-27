@@ -239,6 +239,7 @@ class AgendaKelasController extends Controller
                 'jam' => $request->jam,
                 'pelajaran' => $request->pelajaran,
                 'bahasan' => $request->bahasan,
+                'tugas' => $request->tugas,
                 'kehadiran' => $kehadiran,
             ]);
 

@@ -8,7 +8,7 @@
             <li class="dropdown-header">
                <h6>{{ auth()->user()->name }}</h6>
                <span>Role : {{ auth()->user()->role }}</span><br>
-               <span>@if (auth()->user()->role=="siswa")NIS : @else NIP : @endif {{ auth()->user()->nomor }}</span><br>
+               <span>@if (auth()->user()->role=="siswa")NISN : @else NIP : @endif {{ auth()->user()->nomor }}</span><br>
                <span>User ID : {{ auth()->user()->id }}</span>
             </li>
 

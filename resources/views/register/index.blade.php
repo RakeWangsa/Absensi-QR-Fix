@@ -51,7 +51,7 @@
                        <div class="form-floating">
                         <input type="text" name="nomor" class="form-control
                             @error('nomor') is-invalid @enderror" id="nomor" placeholder="name@example.com" required value="{{ old('nomor') }}">
-                        <label for="nomor">NIS</label>
+                        <label for="nomor">NISN</label>
                         @error('nomor')
                             <div class="invalid-feedback">
                                 {{ $message }}

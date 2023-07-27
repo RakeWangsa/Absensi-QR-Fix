@@ -73,7 +73,7 @@
                 <thead>
                    <tr>
                     <th scope="col" class="text-center">No</th>
-                    <th scope="col" class="text-center">NIS</th>
+                    <th scope="col" class="text-center">NISN</th>
                     <th scope="col" class="text-center">Nama</th>
                     <th scope="col" class="text-center">Status</th>
                     <th scope="col" class="text-center">Action</th>

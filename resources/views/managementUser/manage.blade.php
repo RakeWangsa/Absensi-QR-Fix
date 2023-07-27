@@ -107,7 +107,7 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
-                     <th scope="col">NIS</th>
+                     <th scope="col">NISN</th>
                      <th scope="col">Nama</th>
                      <th scope="col">Email</th>
                      <th scope="col">Action</th>
