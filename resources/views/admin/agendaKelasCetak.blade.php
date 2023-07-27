@@ -10,7 +10,11 @@
     
 
         <div class="mt-2 mb-4">
-            <h5 class="text-center mt-4">Agenda Kelas {{ $cetak }}</h5>
+            @if($cetak=="Semua Kelas")
+              <h5 class="text-center mt-4">Agenda Kelas</h5>
+            @else
+              <h5 class="text-center mt-4">Agenda Kelas {{ $cetak }}</h5>
+            @endif
             <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
 
         </div>

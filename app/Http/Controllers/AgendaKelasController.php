@@ -111,7 +111,7 @@ class AgendaKelasController extends Controller
         ]);
     }
 
-    public function agendaKelasCetak($cetak)
+    public function agendaKelasCetak(Request $request)
     {
         $skrg = Carbon::now()->addHours(7);
         $tahun = $skrg->year;
@@ -123,20 +123,56 @@ class AgendaKelasController extends Controller
         }else{
             $tahunAjaran=$tahunSebelumnya."/".$tahun;
         }
-        $tanggal = DB::table('agenda')
-        ->where('tahun_ajaran',$tahunAjaran)
-        ->select('tanggal')
-        ->distinct()
-        ->get();
-        $kelas = DB::table('agenda')
-        ->where('kelas',$cetak)
-        ->select('kelas')
-        ->distinct()
-        ->get();
-        $agenda = DB::table('agenda')
-        ->where('tahun_ajaran',$tahunAjaran)
-        ->select('*')
-        ->get();
+        // $tanggal = DB::table('agenda')
+        // ->where('tahun_ajaran',$tahunAjaran)
+        // ->select('tanggal')
+        // ->distinct()
+        // ->get();
+        // $kelas = DB::table('agenda')
+        // ->where('kelas',$cetak)
+        // ->select('kelas')
+        // ->distinct()
+        // ->get();
+        // $agenda = DB::table('agenda')
+        // ->where('tahun_ajaran',$tahunAjaran)
+        // ->select('*')
+        // ->get();
+        if($request->kelas=="Semua Kelas"){
+            $kelas = DB::table('agenda')
+            ->select('kelas')
+            ->distinct()
+            ->get();
+            $cetak = $request->kelas;
+        }else{
+            $kelas = DB::table('agenda')
+            ->select('kelas')
+            ->where('kelas',$request->kelas)
+            ->distinct()
+            ->get();
+            $cetak = $request->kelas;
+        }
+
+        if($request->date==NULL){
+            $tanggal = DB::table('agenda')
+            ->where('tahun_ajaran',$tahunAjaran)
+            ->select('tanggal')
+            ->distinct()
+            ->get();
+            $agenda = DB::table('agenda')
+            ->where('tahun_ajaran',$tahunAjaran)
+            ->select('*')
+            ->get();
+        }else{
+            $tanggal = DB::table('agenda')
+            ->where('tanggal',$request->date)
+            ->select('tanggal')
+            ->distinct()
+            ->get();
+            $agenda = DB::table('agenda')
+            ->where('tanggal',$request->date)
+            ->select('*')
+            ->get();
+        }
         return view('admin.agendaKelasCetak', [
             'title' => 'Agenda Kelas',
             'active' => 'agenda kelas',
