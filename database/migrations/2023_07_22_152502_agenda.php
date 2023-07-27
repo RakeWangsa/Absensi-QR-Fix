@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('jam');
             $table->string('pelajaran');
             $table->string('bahasan');
+            $table->string('tugas');
             $table->string('kehadiran');
         });
     }

@@ -405,10 +405,12 @@
              <thead>
                 <tr>
                  <th scope="col" class="text-center">No</th>
-                 <th scope="col" class="text-center">Guru</th>
-                 <th scope="col" class="text-center">Jam</th>
+                 <th scope="col" class="text-center">Jam Ke-</th>
+                 <th scope="col" class="text-center">Nama Guru</th>
+                 
                  <th scope="col" class="text-center">Mata Pelajaran</th>
                  <th scope="col" class="text-center">Pokok Bahasan</th>
+                 <th scope="col" class="text-center">Tugas/Pengayaan</th>
                  <th scope="col" class="text-center">Kehadiran</th>
                 </tr>
              </thead>
@@ -419,17 +421,19 @@
                @else
                   @php($agenda = \App\Models\Agenda::whereDate('tanggal', $itemss->tanggal)->where('kelas', $items->kelas)->get())
                @endif
-               @php($no=1)
+               {{-- @php($no=1) --}}
                @if(count($agenda) > 0)
                @foreach($agenda as $item)               
                {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
                 <tr>
-                   <td scope="row" class="text-center">{{ $no++ }}</td>
+                   {{-- <td scope="row" class="text-center">{{ $no++ }}</td> --}}
                    {{-- <td class="text-center">{{ $user[0]->nomor }}</td> --}}
-                   <td class="text-center">{{ $item->guru }}</td>
                    <td class="text-center">{{ $item->jam }}</td>
+                   <td class="text-center">{{ $item->guru }}</td>
+                   
                    <td class="text-center">{{ $item->pelajaran }}</td>
                    <td class="text-center">{{ $item->bahasan }}</td>
+                   <td class="text-center">{{ $item->tugas }}</td>
                    <td class="text-center">{{ $item->kehadiran }}</td>
                 </tr>
                 @endforeach

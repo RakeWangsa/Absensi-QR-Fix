@@ -21,6 +21,7 @@
                     </div>
                     <form class="row g-3 mt-3" method="GET" action="{{route('submitAgendaKelas')}}">
                         <div class="col-md-12"> <label for="tgl" class="form-label">Tanggal :</label> <input type="text" class="form-control" id="tgl" name="tgl" value="{{ $hariIni }}" readonly></div>
+                        <div class="col-md-12"> <label for="jam" class="form-label">Jam Ke- :</label> <input type="text" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required></div>
                         <div class="col-md-12"> <label for="tahun_ajaran" class="form-label">Tahun Ajaran :</label> <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" value="{{ $tahunAjaran }}" readonly></div>
                         <div class="col-md-12">
                             <label for="kelas" class="form-label">Kelas :</label> 
@@ -82,7 +83,7 @@
                         </div>                        
                         
                         <div class="col-md-12">
-                            <label for="guru" class="form-label">Guru :</label> 
+                            <label for="guru" class="form-label">Nama Guru :</label> 
                             <select id="guru" class="form-select" name="guru">
                                 <option>Pilih Guru!</option>
                                 @foreach($guru as $item)
@@ -90,7 +91,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="col-md-12"> <label for="jam" class="form-label">Jam :</label> <input type="text" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required></div>
+                        
                         {{-- <div class="col-md-12"> <label for="pelajaran" class="form-label">Mata Pelajaran :</label> <input type="text" class="form-control" id="pelajaran" name="pelajaran" value="{{ old('pelajaran') }}" required></div> --}}
                         <div class="col-md-12">
                             <label for="pelajaran" class="form-label">Mata Pelajaran :</label> 
@@ -124,6 +125,7 @@
                             </select>
                         </div>
                         <div class="col-md-12"> <label for="bahasan" class="form-label">Pokok Bahasan :</label> <input type="text" class="form-control" id="bahasan" name="bahasan" value="{{ old('bahasan') }}" required></div>
+                        <div class="col-md-12"> <label for="tugas" class="form-label">Tugas/Pengayaan :</label> <input type="text" class="form-control" id="tugas" name="tugas" value="{{ old('tugas') }}" required></div>
                         <div class="col-md-12"> <label for="kehadiran" class="form-label">Kehadiran :</label> <input class="form-check-input" style="margin-right:5px" type="checkbox" value="hadir" name="kehadiran" id="kehadiran"><label>Hadir</label></div>
                         <div class="text-center mb-5 mt-4"> <button type="submit" class="btn btn-primary">Submit</button> <button type="reset" class="btn btn-secondary">Reset</button></div>
                     </form>
