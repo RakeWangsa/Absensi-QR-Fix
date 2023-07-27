@@ -29,7 +29,7 @@
             
                <label for="kelas" class="form-label" style="float: left">Kelas :</label> 
                <select id="kelas" class="form-select" name="kelas">
-                  <option>Pilih Kelas!</option>
+                  <option>Semua Kelas</option>
                   
                   <!-- Grup Kelas X -->
                   <optgroup label="Kelas X">

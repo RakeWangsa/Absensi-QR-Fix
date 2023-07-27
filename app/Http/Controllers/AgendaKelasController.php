@@ -52,7 +52,9 @@ class AgendaKelasController extends Controller
 
     public function agendaKelasSearch(Request $request)
     {
-        dd($request->kelas,$request->date);
+        if($request->kelas=="Semua Kelas" && $request->date==NULL){
+            return redirect('/agendaKelas');
+        }
         $skrg = Carbon::now()->addHours(7);
         $tahun = $skrg->year;
         $bulan = $skrg->month;
@@ -63,20 +65,42 @@ class AgendaKelasController extends Controller
         }else{
             $tahunAjaran=$tahunSebelumnya."/".$tahun;
         }
-        $tanggal = DB::table('agenda')
-        ->where('tahun_ajaran',$tahunAjaran)
-        ->select('tanggal')
-        ->distinct()
-        ->get();
-        $kelas = DB::table('agenda')
-        ->select('kelas')
-        ->where('kelas',$search)
-        ->distinct()
-        ->get();
-        $agenda = DB::table('agenda')
-        ->where('tahun_ajaran',$tahunAjaran)
-        ->select('*')
-        ->get();
+
+        if($request->kelas=="Semua Kelas"){
+            $kelas = DB::table('agenda')
+            ->select('kelas')
+            ->distinct()
+            ->get();
+        }else{
+            $kelas = DB::table('agenda')
+            ->select('kelas')
+            ->where('kelas',$request->kelas)
+            ->distinct()
+            ->get();
+        }
+
+        if($request->date==NULL){
+            $tanggal = DB::table('agenda')
+            ->where('tahun_ajaran',$tahunAjaran)
+            ->select('tanggal')
+            ->distinct()
+            ->get();
+            $agenda = DB::table('agenda')
+            ->where('tahun_ajaran',$tahunAjaran)
+            ->select('*')
+            ->get();
+        }else{
+            $tanggal = DB::table('agenda')
+            ->where('tanggal',$request->date)
+            ->select('tanggal')
+            ->distinct()
+            ->get();
+            $agenda = DB::table('agenda')
+            ->where('tanggal',$request->date)
+            ->select('*')
+            ->get();
+        }
+        
         return view('admin.agendaKelas', [
             'title' => 'Agenda Kelas',
             'active' => 'agenda kelas',
