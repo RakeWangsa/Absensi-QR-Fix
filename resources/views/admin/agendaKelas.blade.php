@@ -9,7 +9,97 @@
          </div>
          <div class="col text-right" style="text-align: right;">
 
-            <div class="dropdown d-inline-block">
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#search">
+   <i class="bi bi-search"></i> Search
+ </button>
+ 
+ <!-- Modal -->
+ <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+      <form method="GET" action="{{route('agendaKelasSearch')}}">
+      {{-- <form class="form-inline align-items-left" href="{{ route('agendaKelasSearch') }}"> --}}
+       <div class="modal-header">
+         <h1 class="modal-title fs-5" id="exampleModalLabel">Search</h1>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+         <div class="col-md-12">
+            
+               <label for="kelas" class="form-label" style="float: left">Kelas :</label> 
+               <select id="kelas" class="form-select" name="kelas">
+                  <option>Pilih Kelas!</option>
+                  
+                  <!-- Grup Kelas X -->
+                  <optgroup label="Kelas X">
+                     <option value="X1">X1</option>
+                     <option value="X2">X2</option>
+                     <option value="X3">X3</option>
+                     <option value="X4">X4</option>
+                     <option value="X5">X5</option>
+                     <option value="X6">X6</option>
+                     <option value="X7">X7</option>
+                     <option value="X8">X8</option>
+                     <option value="X9">X9</option>
+                  </optgroup>
+         
+                  <!-- Grup Kelas XI IPA -->
+                  <optgroup label="Kelas XI IPA">
+                     <option value="XI IPA 1">XI IPA 1</option>
+                     <option value="XI IPA 2">XI IPA 2</option>
+                     <option value="XI IPA 3">XI IPA 3</option>
+                     <option value="XI IPA 4">XI IPA 4</option>
+                     <option value="XI IPA 5">XI IPA 5</option>
+                     <option value="XI IPA 6">XI IPA 6</option>
+                  </optgroup>
+         
+                  <!-- Grup Kelas XI IPS -->
+                  <optgroup label="Kelas XI IPS">
+                     <option value="XI IPS 1">XI IPS 1</option>
+                     <option value="XI IPS 2">XI IPS 2</option>
+                     <option value="XI IPS 3">XI IPS 3</option>
+                     <option value="XI IPS 4">XI IPS 4</option>
+                     <option value="XI IPS 5">XI IPS 5</option>
+                  </optgroup>
+         
+                  <!-- Grup Kelas XII IPA -->
+                  <optgroup label="Kelas XII IPA">
+                     <option value="XII IPA 1">XII IPA 1</option>
+                     <option value="XII IPA 2">XII IPA 2</option>
+                     <option value="XII IPA 3">XII IPA 3</option>
+                     <option value="XII IPA 4">XII IPA 4</option>
+                     <option value="XII IPA 5">XII IPA 5</option>
+                     <option value="XII IPA 6">XII IPA 6</option>
+                  </optgroup>
+         
+                  <!-- Grup Kelas XII IPS -->
+                  <optgroup label="Kelas XII IPS">
+                     <option value="XII IPS 1">XII IPS 1</option>
+                     <option value="XII IPS 2">XII IPS 2</option>
+                     <option value="XII IPS 3">XII IPS 3</option>
+                     <option value="XII IPS 4">XII IPS 4</option>
+                     <option value="XII IPS 5">XII IPS 5</option>
+                  </optgroup>
+         
+               </select>
+               <div class="col-md-12"> <label for="date" class="form-label mt-4" style="float: left;">Tanggal :</label> <input type="date" class="form-control" id="date" name="date" value="{{ old('date') }}"></div>
+            
+        </div>   
+
+        
+       </div>
+       <div class="modal-footer">
+         <button type="submit" class="btn btn-primary">Search</button>
+       </div>
+
+      </form>
+     </div>
+   </div>
+ </div>
+
+
+            {{-- <div class="dropdown d-inline-block">
                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="bi bi-search"></i> Search
                </button>
@@ -53,7 +143,7 @@
                   <li><a class="dropdown-item" href="{{ route('agendaKelasSearch', ['search' => 'XI IPS 4']) }}">XII IPS 4</a></li>
                   <li><a class="dropdown-item" href="{{ route('agendaKelasSearch', ['search' => 'XII IPS 5']) }}">XII IPS 5</a></li>
                </ul>
-             </div>
+             </div> --}}
 
              <div class="dropdown d-inline-block">
                <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rekap Agenda Kelas {{ $cetak }}</title>
+    <title>Rekap Agenda Kelas {{ $cetak }} ({{ $tahunAjaran }})</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
     
-    <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
-    <div class="card shadow w-100 responsive" style="margin: top 10px;">
-      <div class="card-body" style="margin: top 10px;">
+
         <div class="mt-2 mb-4">
             <h5 class="text-center mt-4">Agenda Kelas {{ $cetak }}</h5>
             <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
@@ -39,23 +37,22 @@
                 font-weight: bold;
                 color: black;
             }
+            .page-break {
+              page-break-after: always;
+            }
         </style>
         @foreach($tanggal as $itemss)
         
         @foreach($kelas as $items)
 
-                 <div class="row align-items-center">
+                 <div class="row align-items-center mb-1">
                     <div class="col">
                        <h5 class="card-title">{{ $items->kelas }} ({{ date('Y-m-d', strtotime($itemss->tanggal)) }})</h5>
                     </div>
                     <div class="col text-right">
-                       {{-- <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button> --}}
+                      
                     </div>
                  </div>
-                 {{-- <div class="row">
-                 <h5 class="card-title">Tanggal : {{ date('Y-m-d', strtotime($items->waktu)) }}</h5>
-                 <button id="excels" class="btn btn-primary"><span class="bi bi-download"></span> Download Excel</button>
-                 </div> --}}
                   <div>
                   <table class="table table-bordered" style="border-color:black">
                      <thead>
@@ -70,18 +67,12 @@
                      </thead>
                      
                      <tbody>
-                       @if(isset($search))
-                          @php($absensi = \App\Models\Absensi::whereDate('waktu', date('Y-m-d', strtotime($items->waktu)))->where('nama', $search)->where('id_kelas', $id)->get())
-                       @else
-                          @php($agenda = \App\Models\Agenda::whereDate('tanggal', $itemss->tanggal)->where('kelas', $items->kelas)->get())
-                       @endif
+                       @php($agenda = \App\Models\Agenda::whereDate('tanggal', $itemss->tanggal)->where('kelas', $items->kelas)->get())
                        @php($no=1)
                        @if(count($agenda) > 0)
                        @foreach($agenda as $item)               
-                       {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
                         <tr>
                            <td scope="row" class="text-center">{{ $no++ }}</td>
-                           {{-- <td class="text-center">{{ $user[0]->nomor }}</td> --}}
                            <td class="text-center">{{ $item->guru }}</td>
                            <td class="text-center">{{ $item->jam }}</td>
                            <td class="text-center">{{ $item->pelajaran }}</td>
@@ -98,24 +89,21 @@
                      </tbody>
                   </table>
                  </div>
-                 <div style="float: right;">
-                  <p class="mt-2 pb-4">Kepala Sekolah</p>
-                  <p class="mt-4">Rakev Tionardi</p>
-                  <p>NIP. 24060120130118</p>
+                 <div class="row page-break">
+                  <div class="col">
+                  <div style="float: right;">
+                    <p class="mt-2 pb-4">Kepala Sekolah</p>
+                    <p class="mt-4">Rakev Tionardi</p>
+                    <p>NIP. 24060120130118</p>
                  </div>
+                 </div>
+                </div>
+                {{-- lanjut page berikutnya --}}
+                 
         @endforeach
         @endforeach
         
-        
 
-
-      
-      
-
-
-      </div>
-    </div>
-  </div>
   <script type="text/javascript">
     window.print();
   </script>
