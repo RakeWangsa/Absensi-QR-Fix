@@ -404,10 +404,9 @@
           <table>
              <thead>
                 <tr>
-                 <th scope="col" class="text-center">No</th>
+                 {{-- <th scope="col" class="text-center">No</th> --}}
                  <th scope="col" class="text-center">Jam Ke-</th>
                  <th scope="col" class="text-center">Nama Guru</th>
-                 
                  <th scope="col" class="text-center">Mata Pelajaran</th>
                  <th scope="col" class="text-center">Pokok Bahasan</th>
                  <th scope="col" class="text-center">Tugas/Pengayaan</th>

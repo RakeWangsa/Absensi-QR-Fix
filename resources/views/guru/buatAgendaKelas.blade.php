@@ -21,8 +21,8 @@
                     </div>
                     <form class="row g-3 mt-3" method="GET" action="{{route('submitAgendaKelas')}}">
                         <div class="col-md-12"> <label for="tgl" class="form-label">Tanggal :</label> <input type="text" class="form-control" id="tgl" name="tgl" value="{{ $hariIni }}" readonly></div>
-                        <div class="col-md-12"> <label for="jam" class="form-label">Jam Ke- :</label> <input type="text" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required></div>
                         <div class="col-md-12"> <label for="tahun_ajaran" class="form-label">Tahun Ajaran :</label> <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" value="{{ $tahunAjaran }}" readonly></div>
+                        <div class="col-md-12"> <label for="jam" class="form-label">Jam Ke- :</label> <input type="text" class="form-control" id="jam" name="jam" value="{{ old('jam') }}" required></div>
                         <div class="col-md-12">
                             <label for="kelas" class="form-label">Kelas :</label> 
                             <select id="kelas" class="form-select" name="kelas">

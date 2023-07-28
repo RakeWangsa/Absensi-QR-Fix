@@ -8,9 +8,9 @@
   </head>
   <body>
     
-    <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    {{-- <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <div class="card shadow w-100 responsive" style="margin: top 10px;">
-      <div class="card-body" style="margin: top 10px;">
+      <div class="card-body" style="margin: top 10px;"> --}}
         <div class="mt-2 mb-4">
             <h5 class="text-center mt-4">Absensi Guru</h5>
             <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
@@ -39,14 +39,15 @@
                 font-weight: bold;
                 color: black;
             }
+            .page-break {
+              page-break-after: always;
+            }
         </style>
-        {{-- @foreach($tanggal as $itemss)
-        
-        @foreach($kelas as $items) --}}
 
-                 <div class="row align-items-center">
+@foreach($month as $i)
+                 <div class="row align-items-center mb-2">
                     <div class="col">
-                       <h5 class="card-title"></h5>
+                       <h5 class="card-title">Bulan : {{ $i }}</h5>
                     </div>
                     <div class="col text-right">
                        {{-- <button id="excel{{ $nomer++ }}" class="btn btn-primary" style="float: right;"><span class="bi bi-download"></span> Download {{ date('Y-m-d', strtotime($items->waktu)) }}</button> --}}
@@ -72,7 +73,7 @@
                       @if(count($guru) > 0)
                       @foreach($guru as $item)               
                       {{-- @php($user = \App\Models\User::where('id', $item->id_siswa)->get()) --}}
-                      @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->where('kehadiran', 'hadir')->where('tahun_ajaran', $tahunAjaran)->get())
+                      @php($absensiGuru = \App\Models\Agenda::where('guru', $item->name)->where('kehadiran', 'hadir')->where('tahun_ajaran', $tahunAjaran)->whereMonth('tanggal', $i)->get())
                       @php($countAbsensiGuru = $absensiGuru->count())
                        <tr>
                           <td scope="row" class="text-center">{{ $no++ }}</td>
@@ -90,13 +91,16 @@
                      </tbody>
                   </table>
                  </div>
-                 <div style="float: right;">
-                  <p class="mt-2 pb-4">Kepala Sekolah</p>
-                  <p class="mt-4">Rakev Tionardi</p>
-                  <p>NIP. 24060120130118</p>
+                 <div class="row page-break">
+                  <div class="col">
+                  <div style="float: right;">
+                    <p class="mt-2 pb-4">Kepala Sekolah</p>
+                    <p class="mt-4">Rakev Tionardi</p>
+                    <p>NIP. 24060120130118</p>
                  </div>
-        {{-- @endforeach
-        @endforeach --}}
+                 </div>
+                </div>
+@endforeach
         
         
 
@@ -105,9 +109,9 @@
       
 
 
-      </div>
+      {{-- </div>
     </div>
-  </div>
+  </div> --}}
   <script type="text/javascript">
     window.print();
   </script>

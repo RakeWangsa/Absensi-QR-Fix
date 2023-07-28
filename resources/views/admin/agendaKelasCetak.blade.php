@@ -61,26 +61,28 @@
                   <table class="table table-bordered" style="border-color:black">
                      <thead>
                         <tr>
-                         <th scope="col" class="text-center px-4">No</th>
-                         <th scope="col" class="text-center px-4">Guru</th>
-                         <th scope="col" class="text-center px-4">Jam</th>
+                         {{-- <th scope="col" class="text-center px-4">No</th> --}}
+                         <th scope="col" class="text-center px-4">Jam Ke-</th>
+                         <th scope="col" class="text-center px-4">Nama Guru</th>
                          <th scope="col" class="text-center px-4">Mata Pelajaran</th>
                          <th scope="col" class="text-center px-4">Pokok Bahasan</th>
+                         <th scope="col" class="text-center px-4">Tugas/Pengayaan</th>
                          <th scope="col" class="text-center px-4">Kehadiran</th>
                         </tr>
                      </thead>
                      
                      <tbody>
                        @php($agenda = \App\Models\Agenda::whereDate('tanggal', $itemss->tanggal)->where('kelas', $items->kelas)->get())
-                       @php($no=1)
+                       {{-- @php($no=1) --}}
                        @if(count($agenda) > 0)
                        @foreach($agenda as $item)               
                         <tr>
-                           <td scope="row" class="text-center">{{ $no++ }}</td>
-                           <td class="text-center">{{ $item->guru }}</td>
+                           {{-- <td scope="row" class="text-center">{{ $no++ }}</td> --}}
                            <td class="text-center">{{ $item->jam }}</td>
+                           <td class="text-center">{{ $item->guru }}</td>
                            <td class="text-center">{{ $item->pelajaran }}</td>
                            <td class="text-center">{{ $item->bahasan }}</td>
+                           <td class="text-center">{{ $item->tugas }}</td>
                            <td class="text-center">{{ $item->kehadiran }}</td>
                         </tr>
                         @endforeach
