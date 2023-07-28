@@ -233,7 +233,7 @@
       @php($user = \App\Models\User::where('id', $item->id_siswa)->get())
          <tr>
             <td scope="row" class="text-center">{{ $no++ }}</td>
-            <td class="text-center">{{ $user[0]->nomor }}</td>
+            <td class="text-center">'{{ $user[0]->nomor }}'</td>
             <td class="text-center">{{ $item->nama }}</td>
             <td class="text-center">{{ $absensi->where('status', 'Hadir')->count() }}</td>
             <td class="text-center">{{ $absensi->where('status', 'Sakit')->count() }}</td>
@@ -286,7 +286,7 @@
          @if(count($absensi)>0)
             <tr>
                <td scope="row" class="text-center">{{ $no++ }}</td>
-               <td class="text-center">{{ $user[0]->nomor }}</td>
+               <td class="text-center">'{{ $user[0]->nomor }}'</td>
                <td class="text-center">{{ $item->nama }}</td>
                <td class="text-center">{{ $absensi[0]->status }}</td>
             </tr>

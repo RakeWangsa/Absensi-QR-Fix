@@ -262,11 +262,13 @@ class AgendaKelasController extends Controller
         ->where('role','guru')
         ->select('*')
         ->get();
+        $month=[7,8,9,10,11,12,1,2,3,4,5,6];
         return view('admin.absensiGuru', [
             'title' => 'Absensi Guru',
             'active' => 'absensi guru',
             'guru' => $guru,
             'tahunAjaran' => $tahunAjaran,
+            'month' => $month
         ]);
     }
 
