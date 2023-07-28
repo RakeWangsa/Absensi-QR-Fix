@@ -10,12 +10,9 @@
     
 
         <div class="mt-2 mb-4">
-            @if($cetak=="Semua Kelas")
-              <h5 class="text-center mt-4">Agenda Kelas</h5>
-            @else
-              <h5 class="text-center mt-4">Agenda Kelas {{ $cetak }}</h5>
-            @endif
-            <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
+          <h5 class="text-center mt-4">SMAN 12 TANGERANG SELATAN</h5>
+          <h5 class="text-center">Agenda Kelas</h5>
+          <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
 
         </div>
         <style type="text/css">
@@ -99,8 +96,8 @@
                   <div class="col">
                   <div style="float: right;">
                     <p class="mt-2 pb-4">Kepala Sekolah</p>
-                    <p class="mt-4">Rakev Tionardi</p>
-                    <p>NIP. 24060120130118</p>
+                    <p style="margin-top: 75px">Rakev Tionardi</p>
+                    <p style="margin-top: -10px">NIP. 24060120130118</p>
                  </div>
                  </div>
                 </div>

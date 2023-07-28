@@ -11,11 +11,7 @@
     {{-- <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
     <div class="card shadow w-100 responsive" style="margin: top 10px;">
       <div class="card-body" style="margin: top 10px;"> --}}
-        <div class="mt-2 mb-4">
-            <h5 class="text-center mt-4">Absensi Guru</h5>
-            <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
-
-        </div>
+        
         <style type="text/css">
             @media print {
                 @page {
@@ -45,6 +41,12 @@
         </style>
 
 @foreach($month as $i)
+<div class="mt-2 mb-4">
+  <h5 class="text-center mt-4">SMAN 12 TANGERANG SELATAN</h5>
+    <h5 class="text-center">Absensi Guru</h5>
+    <h5 class="text-center mb-4">Tahun Ajaran {{ $tahunAjaran }}</h5>
+
+</div>
                  <div class="row align-items-center mb-2">
                     <div class="col">
                        <h5 class="card-title">Bulan : {{ $i }}</h5>
@@ -95,8 +97,8 @@
                   <div class="col">
                   <div style="float: right;">
                     <p class="mt-2 pb-4">Kepala Sekolah</p>
-                    <p class="mt-4">Rakev Tionardi</p>
-                    <p>NIP. 24060120130118</p>
+                    <p style="margin-top: 75px">Rakev Tionardi</p>
+                    <p style="margin-top: -10px">NIP. 24060120130118</p>
                  </div>
                  </div>
                 </div>

@@ -22,7 +22,7 @@ class RegisterController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
             'nomor' => 'required|unique:users',
-            'password' => 'required|min:5|max:255'
+            'password' => 'required|min:8|max:255'
         ]);
 
         $validatedData['role'] = 'siswa';
