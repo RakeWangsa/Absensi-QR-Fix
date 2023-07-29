@@ -69,6 +69,17 @@
                                </div>
                            @enderror
                        </div>
+
+                       <div class="form-floating">
+                        <input type="password" name="password2" class="form-control rounded-bottom
+                            @error('password2') is-invalid @enderror" id="password2" placeholder="Password" required value="{{ old('password2') }}">
+                        <label for="password2">Konfirmasi Password</label>
+                        @error('password2')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
                                  
                         <div class="col-12 mt-4 mb-2"> <button class="btn btn-primary w-100" type="submit">Register</button></div>
                         <p class="small">Sudah Punya Akun? <a href="/login">Login</a></p>

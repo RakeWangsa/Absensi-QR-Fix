@@ -18,6 +18,9 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
+        if($request->password!=$request->password2){
+            return redirect('/register')->with('loginError', 'Registrasi Gagal! Kolom Password dan Konfirmasi Password harus sesuai!');
+        }
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email:dns|unique:users',
