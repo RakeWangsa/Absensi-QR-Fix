@@ -52,7 +52,8 @@ class HomeController extends Controller
         $kelasku = $kelas->get();
 
         $kelasHariIni = DB::table('kelas')
-        ->select('*');
+        ->select('*')
+        ->orderBy('waktu');
         foreach ($cek_array as $value) {
             $kelasHariIni->orWhere('id', 'like', '%' . $value . '%')->where('hari',$hari_ini2);
         }
@@ -80,7 +81,16 @@ class HomeController extends Controller
         $cek_array = array_filter(explode(',', $kelasSiswa));
 
         $kelas = DB::table('kelas')
-        ->select('*');
+        ->select('*')
+        ->orderByRaw("CASE hari
+            WHEN 'senin' THEN 1
+            WHEN 'selasa' THEN 2
+            WHEN 'rabu' THEN 3
+            WHEN 'kamis' THEN 4
+            WHEN 'jumat' THEN 5
+            WHEN 'sabtu' THEN 6
+            ELSE 7 END")
+        ->orderBy('waktu');
         foreach ($cek_array as $value) {
             $kelas->orWhere('id', 'like', '%' . $value . '%');
         }
@@ -185,6 +195,15 @@ class HomeController extends Controller
         ->where('guru',$name)
         ->where('hari',$hari_ini2)
         ->select('*')
+        ->orderByRaw("CASE hari
+            WHEN 'senin' THEN 1
+            WHEN 'selasa' THEN 2
+            WHEN 'rabu' THEN 3
+            WHEN 'kamis' THEN 4
+            WHEN 'jumat' THEN 5
+            WHEN 'sabtu' THEN 6
+            ELSE 7 END")
+        ->orderBy('waktu')
         ->get();
 
         return view('guru.home', [

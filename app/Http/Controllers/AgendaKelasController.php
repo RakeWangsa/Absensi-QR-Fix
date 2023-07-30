@@ -218,11 +218,14 @@ class AgendaKelasController extends Controller
             'kelas.not_in' => 'Pilih Kelas!',
             'guru.required' => 'Pilih Guru!',
             'guru.not_in' => 'Pilih Guru!',
+            'pelajaran.required' => 'Pilih Pelajaran!',
+            'pelajaran.not_in' => 'Pilih Pelajaran!',
         ];
 
         $this->validate($request, [
             'guru' => ['required', Rule::notIn(['Pilih Guru!'])],
             'kelas' => ['required', Rule::notIn(['Pilih Kelas!'])],
+            'pelajaran' => ['required', Rule::notIn(['Pilih Pelajaran!'])],
         ], $messages);
 
         // dd($request->tgl,$request->kelas,$request->guru,$request->jam,$request->pelajaran,$request->bahasan,$request->kehadiran);

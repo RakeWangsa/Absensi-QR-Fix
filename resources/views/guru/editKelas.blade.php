@@ -26,7 +26,7 @@
                         <div class="col-md-12">
                             <label for="ruang" class="form-label">Kelas :</label> 
                             <select id="ruang" class="form-select" name="ruang">
-                                <option>Pilih Kelas!</option>
+                                {{-- <option>Pilih Kelas!</option> --}}
                                 
                                 <!-- Grup Kelas X -->
                                 <optgroup label="Kelas X">
@@ -86,7 +86,7 @@
                         <div class="col-md-12">
                             <label for="pelajaran" class="form-label">Mata Pelajaran :</label> 
                             <select id="pelajaran" class="form-select" name="pelajaran">
-                                <option>Pilih Pelajaran!</option>
+                                {{-- <option>Pilih Pelajaran!</option> --}}
                                 <option value="Kimia" {{ $kelas[0]->pelajaran == 'Kimia' ? 'selected' : '' }}>Kimia</option>
                                 <option value="Ekonomi" {{ $kelas[0]->pelajaran == 'Ekonomi' ? 'selected' : '' }}>Ekonomi</option>
                                 <option value="Fisika" {{ $kelas[0]->pelajaran == 'Fisika' ? 'selected' : '' }}>Fisika</option>
@@ -118,7 +118,7 @@
                         <div class="col-md-12">
                             <label for="hari" class="form-label">Hari :</label> 
                             <select id="hari" class="form-select" name="hari">
-                                <option>Pilih Hari!</option>
+                                {{-- <option>Pilih Hari!</option> --}}
                                 <option value="Senin" {{ $kelas[0]->hari == 'Senin' ? 'selected' : '' }}>Senin</option>
                                 <option value="Selasa" {{ $kelas[0]->hari == 'Selasa' ? 'selected' : '' }}>Selasa</option>
                                 <option value="Rabu" {{ $kelas[0]->hari == 'Rabu' ? 'selected' : '' }}>Rabu</option>
@@ -128,7 +128,7 @@
                             </select>
                         </div>                        
                         <div class="col-md-12"> <label for="waktu" class="form-label">Waktu :</label> <input type="time" class="form-control" id="waktu" name="waktu" value="{{ substr($kelas[0]->waktu, 0, 5) }}"></div>
-                        <div class="text-center mb-5 mt-4"> <button type="submit" class="btn btn-primary">Submit</button> <button type="reset" class="btn btn-secondary">Reset</button></div>
+                        <div class="text-center mb-5 mt-4"> <button type="submit" class="btn btn-primary">Submit</button></div>
                     </form>
                 </div>
             </div> 

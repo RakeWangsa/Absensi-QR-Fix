@@ -22,9 +22,27 @@ class DaftarKelasController extends Controller
         $kelas = DB::table('kelas')
         ->where('guru',$name)
         ->select('*')
+        ->orderByRaw("CASE hari
+            WHEN 'senin' THEN 1
+            WHEN 'selasa' THEN 2
+            WHEN 'rabu' THEN 3
+            WHEN 'kamis' THEN 4
+            WHEN 'jumat' THEN 5
+            WHEN 'sabtu' THEN 6
+            ELSE 7 END")
+        ->orderBy('waktu')
         ->get();
         $semuaKelas = DB::table('kelas')
         ->select('*')
+        ->orderByRaw("CASE hari
+            WHEN 'senin' THEN 1
+            WHEN 'selasa' THEN 2
+            WHEN 'rabu' THEN 3
+            WHEN 'kamis' THEN 4
+            WHEN 'jumat' THEN 5
+            WHEN 'sabtu' THEN 6
+            ELSE 7 END")
+        ->orderBy('waktu')
         ->get();
         return view('guru.daftarKelas', [
             'title' => 'Daftar Kelas',
@@ -218,14 +236,16 @@ class DaftarKelasController extends Controller
             'required' => ':attribute wajib diisi ',
             'hari.required' => 'Pilih Hari!',
             'hari.not_in' => 'Pilih Hari!',
-            'ruang.required' => 'Ruang harus diisi!',
-            'pelajaran.required' => 'Pelajaran harus diisi!',
+            'ruang.required' => 'Pilih Kelas!',
+            'ruang.not_in' => 'Pilih Kelas!',
+            'pelajaran.required' => 'Pilih Pelajaran!',
+            'pelajaran.not_in' => 'Pilih Pelajaran!',
             'waktu.required' => 'Pilih Waktu!',
         ];
 
         $this->validate($request, [
-            "ruang" => ['required'],
-            "pelajaran" => ['required'],
+            "ruang" => ['required', Rule::notIn(['Pilih Kelas!'])],
+            "pelajaran" => ['required', Rule::notIn(['Pilih Pelajaran!'])],
             'hari' => ['required', Rule::notIn(['Pilih Hari!'])],
             "waktu" => ['required'],
         ], $messages);
