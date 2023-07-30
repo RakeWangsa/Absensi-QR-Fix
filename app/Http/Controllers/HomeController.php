@@ -212,6 +212,17 @@ class HomeController extends Controller
             ->where('kelas', 'like', '%' . $id . '%')
             ->select('*')
             ->get();
+        $siswa = $siswa->map(function ($item) {
+            $user = DB::table('users')
+                ->where('id', $item->id_siswa)
+                ->select('nomor')
+                ->first();
+        
+            $item->nomor = $user->nomor;
+            return $item;
+        });
+        $siswa = $siswa->sortBy('nomor');
+        
         $absensi = DB::table('absensi')
             ->where('id_kelas',$id)
             ->where('waktu', '>', $hariIni)

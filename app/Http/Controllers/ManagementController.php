@@ -17,6 +17,7 @@ class ManagementController extends Controller
         $guru = DB::table('Users')
         ->where('role','guru')
         ->select('id', 'name', 'email','nomor')
+        ->orderBy('nomor')
         ->get();
         // $siswa = DB::table('Users')
         // ->where('role','siswa')
@@ -40,6 +41,7 @@ class ManagementController extends Controller
         $siswa = DB::table('Users')
         ->where('role','siswa')
         ->select('id', 'name', 'email','nomor')
+        ->orderBy('nomor')
         ->get();
 
         return view('managementUser.manage', [
@@ -57,6 +59,7 @@ class ManagementController extends Controller
         ->where('role','guru')
         ->where('name',$search)
         ->select('id', 'name', 'email','nomor')
+        ->orderBy('nomor')
         ->get();
         // $siswa = DB::table('Users')
         // ->where('role','siswa')
@@ -85,6 +88,7 @@ class ManagementController extends Controller
         ->where('role','siswa')
         ->where('name',$search)
         ->select('id', 'name', 'email','nomor')
+        ->orderBy('nomor')
         ->get();
 
         return view('managementUser.manage', [

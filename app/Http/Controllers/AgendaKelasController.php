@@ -261,6 +261,7 @@ class AgendaKelasController extends Controller
         $guru = DB::table('Users')
         ->where('role','guru')
         ->select('*')
+        ->orderBy('name')
         ->get();
         $month=[7,8,9,10,11,12,1,2,3,4,5,6];
         return view('admin.absensiGuru', [
@@ -287,6 +288,7 @@ class AgendaKelasController extends Controller
         $guru = DB::table('Users')
         ->where('role','guru')
         ->select('*')
+        ->orderBy('name')
         ->get();
         $month=[7,8,9,10,11,12,1,2,3,4,5,6];
         return view('admin.absensiGuruCetak', [

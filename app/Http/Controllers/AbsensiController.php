@@ -26,6 +26,16 @@ class AbsensiController extends Controller
             ->where('kelas', 'like', '%' . $id_kelas . '%')
             ->select('*')
             ->get();
+            $siswa = $siswa->map(function ($item) {
+                $user = DB::table('users')
+                    ->where('id', $item->id_siswa)
+                    ->select('nomor')
+                    ->first();
+            
+                $item->nomor = $user->nomor;
+                return $item;
+            });
+            $siswa = $siswa->sortBy('nomor');
 
             foreach ($siswa as $data) {
                 $id_siswa = $data->id_siswa;

@@ -41,6 +41,18 @@ class DaftarKelasController extends Controller
             ->where('kelas', 'like', '%' . $id . '%')
             ->select('*')
             ->get();
+
+        $siswa = $siswa->map(function ($item) {
+            $user = DB::table('users')
+                ->where('id', $item->id_siswa)
+                ->select('nomor')
+                ->first();
+        
+            $item->nomor = $user->nomor;
+            return $item;
+        });
+        $siswa = $siswa->sortBy('nomor');
+
         $waktuAbsen = DB::table('waktuAbsen')
             ->where('id_kelas', $id)
             ->select('*')
@@ -79,6 +91,17 @@ class DaftarKelasController extends Controller
             ->where('kelas', 'like', '%' . $id . '%')
             ->select('*')
             ->get();
+        $siswa = $siswa->map(function ($item) {
+            $user = DB::table('users')
+                ->where('id', $item->id_siswa)
+                ->select('nomor')
+                ->first();
+        
+            $item->nomor = $user->nomor;
+            return $item;
+        });
+        $siswa = $siswa->sortBy('nomor');
+
         $waktuAbsen = DB::table('waktuAbsen')
             ->where('id_kelas', $id)
             ->where(DB::raw('MONTH(waktu)'), $filter)
@@ -121,6 +144,17 @@ class DaftarKelasController extends Controller
             ->where('nama', $request->nama)
             ->select('*')
             ->get();
+        $siswa = $siswa->map(function ($item) {
+            $user = DB::table('users')
+                ->where('id', $item->id_siswa)
+                ->select('nomor')
+                ->first();
+        
+            $item->nomor = $user->nomor;
+            return $item;
+        });
+        $siswa = $siswa->sortBy('nomor');
+        
         $waktuAbsen = DB::table('waktuAbsen')
             ->where('id_kelas', $id)
             ->select('*')
